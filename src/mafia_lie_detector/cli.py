@@ -114,7 +114,9 @@ def cmd_draft(args: argparse.Namespace) -> int:
     captions = youtube.load_captions(args.captions)
     utterances = draft.utterances_from_captions(captions, args.names)
     game = draft.make_draft(captions["video_id"], utterances, title=args.title, source_kind=captions.get("source", ""))
-    out =Path(args.output) if args.output else ANNOTATIONS_DIR / f"{game.game_id}.json"
+    if args.roster:
+        game = draft.apply_roster(game, schema.load_game(args.roster))
+    out = Path(args.output) if args.output else ANNOTATIONS_DIR / f"{game.game_id}.json"
     if out.exists() and not args.force:
         _err(f"{out} exists; refusing to overwrite hand-labelled work (use --force)")
         return 1
@@ -322,6 +324,7 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("-o", "--output")
     s.add_argument("--title", default="")
     s.add_argument("--names", nargs="*", help="speaker names to detect as 'Name: text' prefixes")
+    s.add_argument("--roster", help="answer-key game file (e.g. ground_truth/<episode>.json) to pre-fill players/winner")
     s.add_argument("--force", action="store_true", help="overwrite an existing annotation file")
     s.set_defaults(func=cmd_draft)
 

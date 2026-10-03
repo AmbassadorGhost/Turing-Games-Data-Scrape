@@ -12,6 +12,21 @@ def utterances_from_captions(captions: dict, names: Optional[Sequence[str]] = No
     return assign_speakers_by_prefix(utterances, names) if names else utterances
 
 
+def apply_roster(draft: Game, roster: Game) -> Game:
+    """Copy an answer key (players, winner, events) onto a caption draft. Turns stay as drafted."""
+    return Game(
+        game_id=roster.game_id,
+        source=draft.source,
+        variant=roster.variant,
+        players=[p.model_copy(deep=True) for p in roster.players],
+        turns=draft.turns,
+        winner=roster.winner,
+        annotation_status="draft",
+        notes=" | ".join(n for n in (roster.notes, draft.notes) if n),
+        events=list(roster.events),
+    )
+
+
 def make_draft(
     video_id: str,
     utterances: Sequence[Utterance],

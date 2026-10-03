@@ -104,6 +104,7 @@ class Game(BaseModel):
     winner: Optional[str] = None
     annotation_status: Literal["draft", "reviewed"] = "draft"
     notes: str = ""
+    events: list[str] = Field(default_factory=list)  # timeline, e.g. "N1: mafia kill X; doctor saves Y"
 
     @model_validator(mode="after")
     def _check_integrity(self) -> "Game":
