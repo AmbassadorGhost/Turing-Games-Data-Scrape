@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mafia-lie-detector"
+version = "0.1.0"
+description = "Build role-labelled Mafia/Werewolf transcripts and train deception detectors for LLM players."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pydantic>=2.5",
+    "numpy>=1.26",
+    "scikit-learn>=1.3",
+]
+
+[project.optional-dependencies]
+# Fetching captions / listing channel videos (needs network access to youtube.com).
+ingest = ["youtube-transcript-api>=1.0", "yt-dlp"]
+# Speech-to-text fallback when a video has no usable captions (also needs ffmpeg).
+whisper = ["faster-whisper"]
+# Optional LLM-assisted pre-annotation.
+llm = ["anthropic"]
+dev = ["pytest", "youtube-transcript-api>=1.0"]
+
+[project.scripts]
+mld = "mafia_lie_detector.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
