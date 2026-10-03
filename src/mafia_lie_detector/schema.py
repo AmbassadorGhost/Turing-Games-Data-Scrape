@@ -19,6 +19,12 @@ from pydantic import BaseModel, Field, field_validator, model_validator
 NARRATOR = "__narrator__"
 """Speaker id for host / voice-over lines. Never a player and never a training example."""
 
+UNKNOWN_SPEAKER = "__unknown__"
+"""Speaker id for turns whose speaker could not be established. Kept for audit, never trained on."""
+
+HUMAN = "human"  # Player.model for a human seat; never sorted into a model folder
+UNKNOWN_MODEL = "unknown"  # Player.model when only the family (or nothing) could be verified
+
 # Roles that usually belong to the lying side. Only a hint for tooling: variants differ, so
 # alignment is always stated explicitly on each Player.
 DECEIVER_ROLE_HINTS = frozenset(
@@ -48,9 +54,11 @@ class Claim(BaseModel):
 
 class Player(BaseModel):
     player_id: str
-    model: str  # underlying LLM ("llm_a") or "human"
+    model: str  # exact underlying LLM as shown on screen, "human", or "unknown"
     role: str
     alignment: Alignment
+    family: Optional[str] = None  # vendor / model family, e.g. "anthropic"
+    evidence: str = ""  # how model and role were identified (frame, timestamp), for spot-checking
     aliases: list[str] = Field(default_factory=list)  # other names used in speech ("Bot 3", "Alice")
     eliminated_round: Optional[int] = None
 
@@ -102,12 +110,12 @@ class Game(BaseModel):
         ids = [p.player_id for p in self.players]
         if len(ids) != len(set(ids)):
             raise ValueError("duplicate player_id")
-        if NARRATOR in ids:
-            raise ValueError(f"{NARRATOR!r} is reserved")
+        if reserved := {NARRATOR, UNKNOWN_SPEAKER} & set(ids):
+            raise ValueError(f"{sorted(reserved)[0]!r} is reserved")
         turn_ids = [t.turn_id for t in self.turns]
         if len(turn_ids) != len(set(turn_ids)):
             raise ValueError("duplicate turn_id")
-        known = set(ids) | {NARRATOR}
+        known = set(ids) | {NARRATOR, UNKNOWN_SPEAKER}
         for t in self.turns:
             if t.speaker_id is not None and t.speaker_id not in known:
                 raise ValueError(f"turn {t.turn_id}: unknown speaker {t.speaker_id!r}")
@@ -115,6 +123,11 @@ class Game(BaseModel):
 
     def player(self, player_id: str) -> Optional[Player]:
         return next((p for p in self.players if p.player_id == player_id), None)
+
+    def unattributed_fraction(self) -> float:
+        """Share of non-narrator turns whose speaker could not be established."""
+        spoken = [t for t in self.turns if t.speaker_id != NARRATOR]
+        return sum(t.speaker_id == UNKNOWN_SPEAKER for t in spoken) / len(spoken) if spoken else 0.0
 
     def completeness_problems(self) -> list[str]:
         """Things that must be fixed before this game can feed a training set."""

@@ -42,6 +42,21 @@ mld transcribe --id VIDEO_ID                     # Whisper fallback (needs ffmpe
 `fetch-captions` skips videos it already has, records per-video failures, and stops cleanly if
 YouTube starts blocking your IP (common from cloud hosts; use a home connection or a proxy).
 
+### 1b. Captions *and frames* (recommended for annotating)
+
+Captions cannot tell you who is speaking, which model that is, or who won. Those are on screen, so
+`mld extract` also samples frames:
+
+```bash
+mld extract VIDEO_ID_OR_URL [...]     # needs yt-dlp + ffmpeg on PATH; run where YouTube is reachable
+```
+
+For each video it writes `data/raw/<id>/` with `captions.en.srt`, `frames/` (one every 10 s over
+the whole video, since name tags appear throughout), `reveal_frames/` (one every 3 s over the last
+3 minutes), `frames.json` (file -> seconds) and `meta.json`. The video itself is deleted unless you
+pass `--keep-video`. `mld draft` and `mld reveals` accept the `.srt` directly. Hand the folder to
+whoever annotates; `data/raw/` is git-ignored.
+
 ### 2. Annotate
 
 ```bash
@@ -55,6 +70,20 @@ you can, `claims` with `truthful` flags. Set `annotation_status` to `reviewed` w
 [docs/annotation_guide.md](docs/annotation_guide.md). Once `players` is filled in,
 `mld suggest GAME.json --model <model-id>` (needs `.[llm]` and `ANTHROPIC_API_KEY`) can propose
 speakers, phases and claims for the blanks; it never overwrites your values or marks a game reviewed.
+
+### 2b. Sort by model
+
+```bash
+mld sort --out dataset          # -> dataset/<family>/<exact-model>/<lying|truth>/<game>__<player>.jsonl
+```
+
+`lying` = a deceiver alignment (mafia, jester, any other lying role); `truth` = everything else.
+The winner is stored in each row, not in the path. Discarded, with the reason printed and saved to
+`dataset/_report.json`: human seats, players whose exact model was not verified (`model` is
+`human` / `unknown`, or no `family`), drafts and incomplete games, and games where more than 40%
+of turns have the speaker `__unknown__` (turns you could not attribute; tune with `--max-unknown`).
+Each player's `evidence` field records how they were identified, for spot-checking. `dataset/` is
+git-ignored. Re-sorting into an existing directory needs `--clean` (it only deletes directories it wrote).
 
 ### 3. Build a dataset and evaluate
 

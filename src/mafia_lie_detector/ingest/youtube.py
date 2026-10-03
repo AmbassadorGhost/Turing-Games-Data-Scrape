@@ -124,7 +124,15 @@ def save_captions(data: dict, out_dir: str | Path) -> Path:
 
 
 def load_captions(path: str | Path) -> dict:
-    return json.loads(Path(path).read_text(encoding="utf-8"))
+    """Load a captions JSON (from fetch-captions / transcribe) or an ``.srt`` (from ``mld extract``)."""
+    path = Path(path)
+    if path.suffix.lower() == ".srt":
+        from .srt import parse_srt
+
+        # data/raw/<id>/captions.en.srt names the video by its folder; <id>.en.srt by its file.
+        vid = path.parent.name if path.name.startswith("captions") else path.name.split(".")[0]
+        return {"video_id": vid, "source": "srt", "snippets": parse_srt(path.read_text(encoding="utf-8"))}
+    return json.loads(path.read_text(encoding="utf-8"))
 
 
 @dataclass

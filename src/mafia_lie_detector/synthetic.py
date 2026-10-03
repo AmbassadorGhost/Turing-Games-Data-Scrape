@@ -11,6 +11,7 @@ import random
 from .schema import NARRATOR, Alignment, Claim, ClaimKind, Game, Player, Turn
 
 LLMS = ("llm_a", "llm_b", "llm_c", "human")
+FAMILY = {"llm_a": "family-x", "llm_b": "family-x", "llm_c": "family-y"}  # humans have none
 
 _LIE = [
     "Honestly I was asleep all night, trust me.",
@@ -34,14 +35,16 @@ def make_games(n_games: int = 60, *, seed: int = 0, turns_per_player: int = 4) -
     for g in range(n_games):
         seats = [f"P{i}" for i in range(1, 7)]
         deceivers = set(rng.sample(seats, 2))
+        models = [rng.choice(LLMS) for _ in seats]
         players = [
             Player(
                 player_id=pid,
-                model=rng.choice(LLMS),
+                model=model,
+                family=FAMILY.get(model),
                 role="mafia" if pid in deceivers else "villager",
                 alignment=Alignment.DECEIVER if pid in deceivers else Alignment.TRUTHFUL,
             )
-            for pid in seats
+            for pid, model in zip(seats, models)
         ]
         turns = [Turn(turn_id=0, speaker_id=NARRATOR, text="Welcome to the game.", phase="intro")]
         for _ in range(turns_per_player):

@@ -7,7 +7,7 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Iterable, Optional
 
-from .schema import NARRATOR, Alignment, Game
+from .schema import NARRATOR, UNKNOWN_SPEAKER, Alignment, Game
 
 TARGETS = ("turn_deceptive", "alignment")
 
@@ -91,7 +91,7 @@ def build_examples(
         visible = [
             t
             for t in game.turns
-            if t.speaker_id not in (None, NARRATOR)
+            if t.speaker_id not in (None, NARRATOR, UNKNOWN_SPEAKER)
             and (t.phase or "").lower() not in excluded
             and t.text.strip()
         ]

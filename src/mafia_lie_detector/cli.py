@@ -66,6 +66,25 @@ def cmd_fetch_captions(args: argparse.Namespace) -> int:
     return 1 if report.failed and not report.saved and not report.skipped else 0
 
 
+def cmd_extract(args: argparse.Namespace) -> int:
+    from .ingest import extract
+
+    rc = 0
+    for ref in args.refs:
+        try:
+            meta = extract.extract_video(
+                ref, args.out, frame_every=args.frame_every, tail_seconds=args.tail_seconds,
+                tail_every=args.tail_every, height=args.height, keep_video=args.keep_video,
+            )
+        except (RuntimeError, ValueError) as exc:
+            _err(f"{ref}: {exc}")
+            rc = 1
+            continue
+        caps = ", ".join(meta["captions"]) or "NO CAPTIONS (use `mld transcribe`)"
+        print(f"{meta['video_id']}: {meta['n_frames']} frames + {meta['n_reveal_frames']} reveal frames, captions: {caps}")
+    return rc
+
+
 def cmd_transcribe(args: argparse.Namespace) -> int:
     from .ingest import audio
 
@@ -180,6 +199,31 @@ def cmd_build_dataset(args: argparse.Namespace) -> int:
     return 0 if n else 1
 
 
+def cmd_sort(args: argparse.Namespace) -> int:
+    from . import sorting
+
+    try:
+        if args.clean:
+            sorting.clean_output(args.out)
+        report = sorting.sort_games(
+            schema.iter_games(args.paths), args.out,
+            require_reviewed=not args.include_drafts, max_unknown=args.max_unknown,
+        )
+    except ValueError as exc:
+        _err(str(exc))
+        return 1
+    for gid, reasons in report.discarded_games.items():
+        _err(f"discarded game {gid}: {'; '.join(reasons)}")
+    for key, why in report.discarded_players.items():
+        _err(f"discarded player {key}: {why}")
+    if report.unknown_winner:
+        _err(f"winner not recorded for: {', '.join(report.unknown_winner)}")
+    for folder, n in sorted(report.written.items()):
+        print(f"{folder}: {n} turns")
+    print(f"{report.files} files -> {args.out} (summary: {args.out}/{sorting.REPORT_NAME})")
+    return 0 if report.files else 1
+
+
 def _print_report(report: dict) -> None:
     def row(name: str, m: dict) -> str:
         return (
@@ -255,6 +299,16 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--overwrite", action="store_true")
     s.set_defaults(func=cmd_fetch_captions)
 
+    s = sub.add_parser("extract", help="captions + sampled frames for annotating speakers/roles (needs yt-dlp, ffmpeg)")
+    s.add_argument("refs", nargs="+", help="video ids or URLs")
+    s.add_argument("--out", default=str(RAW_DIR))
+    s.add_argument("--frame-every", type=float, default=10.0, help="seconds between frames over the whole video")
+    s.add_argument("--tail-seconds", type=float, default=180.0, help="length of the denser end-of-game pass")
+    s.add_argument("--tail-every", type=float, default=3.0, help="seconds between frames in the end pass")
+    s.add_argument("--height", type=int, default=480, help="max video height to download")
+    s.add_argument("--keep-video", action="store_true", help="keep the downloaded video file")
+    s.set_defaults(func=cmd_extract)
+
     s = sub.add_parser("transcribe", help="speech-to-text fallback for videos without captions")
     s.add_argument("--id", action="append", required=True)
     s.add_argument("--audio-dir", default="data/audio")
@@ -297,6 +351,14 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--include-drafts", action="store_true", help="also use games not marked reviewed")
     s.set_defaults(func=cmd_build_dataset)
 
+    s = sub.add_parser("sort", help="sort reviewed games into dataset/<family>/<model>/<lying|truth>/")
+    s.add_argument("paths", nargs="*", default=[str(ANNOTATIONS_DIR)])
+    s.add_argument("--out", default="dataset")
+    s.add_argument("--max-unknown", type=float, default=0.4, help="discard games with a larger share of unattributed turns")
+    s.add_argument("--include-drafts", action="store_true")
+    s.add_argument("--clean", action="store_true", help="first delete a previous sort output (only if it has _report.json)")
+    s.set_defaults(func=cmd_sort)
+
     s = sub.add_parser("evaluate", help="cross-validate a baseline detector")
     s.add_argument("dataset")
     s.add_argument("--split", choices=modeling.SPLITS, default="group_kfold")
@@ -320,6 +382,9 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     args = build_parser().parse_args(argv)
     try:
         return args.func(args)
+    except FileNotFoundError as exc:
+        _err(f"not found: {exc.filename or exc}")
+        return 2
     except ModuleNotFoundError as exc:
         _err(f"missing dependency: {exc.name}. Install the matching extra, e.g. pip install -e '.[ingest]'")
         return 2
