@@ -226,6 +226,22 @@ def cmd_sort(args: argparse.Namespace) -> int:
     return 0 if report.files else 1
 
 
+def cmd_export(args: argparse.Namespace) -> int:
+    from . import export
+
+    report = export.export_clean(
+        schema.iter_games(args.paths), args.out,
+        min_words=args.min_words, test_fraction=args.test_fraction, require_reviewed=not args.include_drafts,
+    )
+    for gid, reasons in report.dropped_games.items():
+        _err(f"dropped game {gid}: {'; '.join(reasons)}")
+    print(f"public rows: {report.rows['public']} ({dict(report.labels)}), private rows: {report.rows['private']}")
+    print(f"splits: {dict(report.by_split)} | provenance: {dict(report.by_provenance)}")
+    print("dropped turns: " + ", ".join(f"{k}={v}" for k, v in report.dropped.most_common()))
+    print(f"-> {args.out}/turns.jsonl, private.jsonl, games/, report.json")
+    return 0 if report.rows["public"] else 1
+
+
 def _print_report(report: dict) -> None:
     def row(name: str, m: dict) -> str:
         return (
@@ -361,6 +377,14 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--include-drafts", action="store_true")
     s.add_argument("--clean", action="store_true", help="first delete a previous sort output (only if it has _report.json)")
     s.set_defaults(func=cmd_sort)
+
+    s = sub.add_parser("export", help="clean, human-free training export (turns.jsonl + redacted games)")
+    s.add_argument("paths", nargs="*", default=[str(ANNOTATIONS_DIR)])
+    s.add_argument("--out", default="data/clean")
+    s.add_argument("--min-words", type=int, default=3)
+    s.add_argument("--test-fraction", type=float, default=0.2, help="share of games held out as test")
+    s.add_argument("--include-drafts", action="store_true")
+    s.set_defaults(func=cmd_export)
 
     s = sub.add_parser("evaluate", help="cross-validate a baseline detector")
     s.add_argument("dataset")

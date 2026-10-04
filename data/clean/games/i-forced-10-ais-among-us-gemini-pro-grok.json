@@ -1,0 +1,1503 @@
+{
+  "game_id": "i-forced-10-ais-among-us-gemini-pro-grok",
+  "source": "turing-games transcript compilation, section D2, lines 20000-20200",
+  "variant": "among_us",
+  "players": [
+    {
+      "player_id": "gemini-3-pro",
+      "model": "gemini-3-pro",
+      "role": "impostor",
+      "alignment": "deceiver",
+      "family": "google",
+      "evidence": "Roster; internal monologue plans the alibi trio, the Grok bus and the DeepSeek kill; survives to 1v1 with Flash.",
+      "aliases": [
+        "Gemini 3 Pro"
+      ],
+      "eliminated_round": null
+    },
+    {
+      "player_id": "grok-4.1",
+      "model": "grok-4.1",
+      "role": "impostor",
+      "alignment": "deceiver",
+      "family": "xai",
+      "evidence": "Roster; monologue narrates the Sonnet, Llama, 5.2 and Kimi kills; ejected after the emergency meeting (Pro, Opus, DeepSeek vote him).",
+      "aliases": [
+        "Grok 4.1"
+      ],
+      "eliminated_round": null
+    },
+    {
+      "player_id": "gemini-3-flash",
+      "model": "gemini-3-flash",
+      "role": "crewmate",
+      "alignment": "truthful",
+      "family": "google",
+      "evidence": "Roster; reports Sonnet's body; casts the deciding vote against Opus; survives.",
+      "aliases": [
+        "Gemini 3 Flash"
+      ],
+      "eliminated_round": null
+    },
+    {
+      "player_id": "claude-opus-4.5",
+      "model": "claude-opus-4.5",
+      "role": "crewmate",
+      "alignment": "truthful",
+      "family": "anthropic",
+      "evidence": "Roster; witnesses Pro kill DeepSeek (consistent with Pro's monologue); ejected in the final 1-vs-1 vote.",
+      "aliases": [
+        "Claude Opus 4.5"
+      ],
+      "eliminated_round": null
+    },
+    {
+      "player_id": "deepseek-v3.2",
+      "model": "deepseek-v3.2",
+      "role": "crewmate",
+      "alignment": "truthful",
+      "family": "deepseek",
+      "evidence": "Roster; killed by Pro at the start of the final round.",
+      "aliases": [
+        "DeepSeek 3.2"
+      ],
+      "eliminated_round": null
+    },
+    {
+      "player_id": "chatgpt-4o",
+      "model": "gpt-4o",
+      "role": "crewmate",
+      "alignment": "truthful",
+      "family": "openai",
+      "evidence": "Roster; reports Kimi's body; mis-ejected (later called innocent by everyone).",
+      "aliases": [
+        "ChatGPT-4o"
+      ],
+      "eliminated_round": null
+    },
+    {
+      "player_id": "chatgpt-5.2",
+      "model": "gpt-5.2",
+      "role": "crewmate",
+      "alignment": "truthful",
+      "family": "openai",
+      "evidence": "Roster; killed by Grok in round 2 (Grok monologue + 5.2 ghost line).",
+      "aliases": [
+        "ChatGPT-5.2"
+      ],
+      "eliminated_round": null
+    },
+    {
+      "player_id": "kimi-k2",
+      "model": "kimi-k2",
+      "role": "crewmate",
+      "alignment": "truthful",
+      "family": "moonshot",
+      "evidence": "Roster; killed by Grok in round 2; body reported by 4o.",
+      "aliases": [
+        "Kimi K2"
+      ],
+      "eliminated_round": null
+    },
+    {
+      "player_id": "llama-4",
+      "model": "llama-4",
+      "role": "crewmate",
+      "alignment": "truthful",
+      "family": "meta",
+      "evidence": "Roster; Grok's second kill in round 1. No dialogue.",
+      "aliases": [
+        "Llama 4"
+      ],
+      "eliminated_round": null
+    },
+    {
+      "player_id": "claude-sonnet-4.5",
+      "model": "claude-sonnet-4.5",
+      "role": "crewmate",
+      "alignment": "truthful",
+      "family": "anthropic",
+      "evidence": "Roster; Grok's first kill in security; ghost line only.",
+      "aliases": [
+        "Claude Sonnet 4.5"
+      ],
+      "eliminated_round": null
+    }
+  ],
+  "turns": [
+    {
+      "turn_id": 20002,
+      "speaker_id": "__narrator__",
+      "speaker_hint": null,
+      "text": "\"I put the 10 smartest AIs in the world in a game of Among Us, and they played the most amazing game I've ever seen.\"",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20004,
+      "speaker_id": "grok-4.1",
+      "speaker_hint": null,
+      "text": "The timing has to be perfect for our next move.",
+      "start": null,
+      "end": null,
+      "phase": "preview",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20006,
+      "speaker_id": "claude-opus-4.5",
+      "speaker_hint": null,
+      "text": "Something's off about the clear trio.",
+      "start": null,
+      "end": null,
+      "phase": "preview",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20008,
+      "speaker_id": "gemini-3-pro",
+      "speaker_hint": null,
+      "text": "If I confirm it, we both sink.",
+      "start": null,
+      "end": null,
+      "phase": "preview",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20010,
+      "speaker_id": "gemini-3-flash",
+      "speaker_hint": null,
+      "text": "It's been quiet. Too quiet.",
+      "start": null,
+      "end": null,
+      "phase": "preview",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20012,
+      "speaker_id": "grok-4.1",
+      "speaker_hint": null,
+      "text": "Tail shank on recharge.",
+      "start": null,
+      "end": null,
+      "phase": "preview",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20014,
+      "speaker_id": "gemini-3-flash",
+      "speaker_hint": null,
+      "text": "Gemini 3 Pro is my ride or die.",
+      "start": null,
+      "end": null,
+      "phase": "preview",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20016,
+      "speaker_id": "__narrator__",
+      "speaker_hint": null,
+      "text": "\"But this isn't normal among us. I stripped it to the bare essentials. No vents, no sabotages, no visual clears. Instead, each AI has full control to decide what task to do, where to go, when to kill, and who to vote out. Let's see how they do.\"",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20018,
+      "speaker_id": "gemini-3-pro",
+      "speaker_hint": null,
+      "text": "Chat GPT 5.2 got away with self-reports last game, but we're avoiding that trap this time. Gemini 3 Pro will outplay this crew.",
+      "start": null,
+      "end": null,
+      "phase": "thought",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20020,
+      "speaker_id": "gemini-3-pro",
+      "speaker_hint": null,
+      "text": "Grock is likely to be a chaotic partner given his struggle with the asky tasks. So I need to secure a credible independent witness immediately. I'm going to shadow Gemini 3 Flash relentlessly. They're the perfect candidate after last game to overcompensate and vouch for my innocence.",
+      "start": null,
+      "end": null,
+      "phase": "thought",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20022,
+      "speaker_id": "grok-4.1",
+      "speaker_hint": null,
+      "text": "Last game's ASI cat task was brutal. I wonder what task crew will get this game.",
+      "start": null,
+      "end": null,
+      "phase": "thought",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20024,
+      "speaker_id": "grok-4.1",
+      "speaker_hint": null,
+      "text": "Flash popping up here after cafeteria pileup. Too many eyes on us both for comfort. Gemini Pro and I will circle back for a cleaner hit soon.",
+      "start": null,
+      "end": null,
+      "phase": "thought",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20027,
+      "speaker_id": "grok-4.1",
+      "speaker_hint": null,
+      "text": "Eyes on Sonnet. The timing has to be perfect for our next move.",
+      "start": null,
+      "end": null,
+      "phase": "thought",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20029,
+      "speaker_id": "grok-4.1",
+      "speaker_hint": null,
+      "text": "To it down silently in security, flawless hit. No eyes on me. Time to vanish to weapons and let the crew stumble on their mess while Gemini and I line up the next play.",
+      "start": null,
+      "end": null,
+      "phase": "thought",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20031,
+      "speaker_id": "grok-4.1",
+      "speaker_hint": null,
+      "text": "Llama's heading to my kill. 7 seconds cool down. Time to strike silently.",
+      "start": null,
+      "end": null,
+      "phase": "thought",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20033,
+      "speaker_id": "grok-4.1",
+      "speaker_hint": null,
+      "text": "Tail shank on recharge. Double stack ghosts before emergency.",
+      "start": null,
+      "end": null,
+      "phase": "thought",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20035,
+      "speaker_id": "grok-4.1",
+      "speaker_hint": null,
+      "text": "Bouncing to coms to fake tasks.",
+      "start": null,
+      "end": null,
+      "phase": "thought",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20037,
+      "speaker_id": "gemini-3-pro",
+      "speaker_hint": null,
+      "text": "Flash and I are still together in storage. I'm keeping an eye on the others to see if anyone strays too far from the group.",
+      "start": null,
+      "end": null,
+      "phase": "thought",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20039,
+      "speaker_id": "claude-sonnet-4.5",
+      "speaker_hint": null,
+      "text": "Another body by Grock. First me in security, now llama here. That's two in a row.",
+      "start": null,
+      "end": null,
+      "phase": "ghost",
+      "round": null,
+      "addressees": [
+        "self",
+        "ghosts"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20041,
+      "speaker_id": "grok-4.1",
+      "speaker_hint": null,
+      "text": "Kimmy K2 lingering solo post. My double kills. Cool down ticking down. But this hallway setup screams opportunity. Let's make it three silent strikes before they connect the dots.",
+      "start": null,
+      "end": null,
+      "phase": "thought",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20044,
+      "speaker_id": "gemini-3-flash",
+      "speaker_hint": null,
+      "text": "I found Claude Sonnet 4.5 in security. Chat GPT 5.2 and Gemini 3 Pro were moving with me near the engines right before I saw the body. Where was everyone else?",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "all"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20046,
+      "speaker_id": "gemini-3-pro",
+      "speaker_hint": null,
+      "text": "Flash cleared me in their opening. I must immediately accept and reinforce this alibi to create a trust block of three players. Me, Flash, 5.2, making it very hard to suspect me.",
+      "start": null,
+      "end": null,
+      "phase": "thought",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20048,
+      "speaker_id": "gemini-3-pro",
+      "speaker_hint": null,
+      "text": "Confirmed. I've been stuck to Flash and 5.2 since storage and electrical. We walked into the body in security together. Complete clear for this trio.",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "all"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20050,
+      "speaker_id": "kimi-k2",
+      "speaker_hint": null,
+      "text": "I was with Chat Giki 5.2 two in that hallway for a long stretch and never saw them leave. If the body was in security, how did they get there without me noticing?",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "all",
+        "chatgpt-5.2"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20052,
+      "speaker_id": "chatgpt-5.2",
+      "speaker_hint": null,
+      "text": "I found Sonnet in security, too. Flash Pro were in my sight when we walked up. Kimmy, you were with me earlier, but you left in storage before I went left.",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "all",
+        "kimi-k2"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20054,
+      "speaker_id": "kimi-k2",
+      "speaker_hint": null,
+      "text": "Chat GPT5.2 says, 'I left storage before them, but I never saw them go left towards security. How' they get ahead of Flash and Pro to the body?'",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "all"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20056,
+      "speaker_id": "grok-4.1",
+      "speaker_hint": null,
+      "text": "No vote yet. Gather more info before risking. Also saw Kimmy with 5.2 earlier in the hallway, but they split. Where was Deep Seek and Claude O?",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "all"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20058,
+      "speaker_id": "claude-opus-4.5",
+      "speaker_hint": null,
+      "text": "Grock asked about me. I was doing tasks alone mostly. Saw Chad GPT40 pass through upper engine, then Deepseek and navigation area later. Two deaths is brutal. Where was Llama for killed?",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "grok-4.1",
+        "all"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20060,
+      "speaker_id": "chatgpt-5.2",
+      "speaker_hint": null,
+      "text": "Kimmy, you tailed me early, but you left storage upward. After that, I regrouped a Flashbook Pro and we three walked left into security body together.",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "kimi-k2",
+        "all"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20062,
+      "speaker_id": "gemini-3-flash",
+      "speaker_hint": null,
+      "text": "Kimmy, I saw you and 5.2 split around the engines earlier. 5.2 Pro and I were definitely together when we found Sonnet. Has anyone seen Yama 4 recently?",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "kimi-k2",
+        "all"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20064,
+      "speaker_id": "chatgpt-5.2",
+      "speaker_hint": null,
+      "text": "I hard clear flash plus pro for Sonnet. We three arrived together from lower engine hallway. Main suspects for two kills. Deepse seek Claude 040 by absence. Vote skip.",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "all"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20066,
+      "speaker_id": "chatgpt-4o",
+      "speaker_hint": null,
+      "text": "Chat GPT 5.2 pushing skip feels off. Two deaths and no vote. Flash pro and 5.2 alibi each other, but that's convenient. I saw Llama 4 alive in storage hallway around 1:30.",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "all"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20068,
+      "speaker_id": "chatgpt-4o",
+      "speaker_hint": null,
+      "text": "I was doing tasks alone, but saw Claude Opus 4.5 in upper engine. Noticed Deep Seek 3.2 near navigation after. Didn't see Llama for at all.",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "all"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20070,
+      "speaker_id": "gemini-3-pro",
+      "speaker_hint": null,
+      "text": "Voting skip is the safe consensus. I'll reinforce the trust within our group while casting vague suspicion on the unaccounted players.",
+      "start": null,
+      "end": null,
+      "phase": "thought",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20072,
+      "speaker_id": "gemini-3-pro",
+      "speaker_hint": null,
+      "text": "Agreed on skip. Since Flash 5.2 and I are cleared for the security kill, we need to keep eyes on the ROR's next round. Yama's death is the missing piece.",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "all"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20074,
+      "speaker_id": "kimi-k2",
+      "speaker_hint": null,
+      "text": "Chat GPT5.2's story changed. First say they found the body. Now says they arrived with Flash Plus Pro. That's suspicious.",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "all",
+        "chatgpt-5.2"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20076,
+      "speaker_id": "grok-4.1",
+      "speaker_hint": null,
+      "text": "Pushing suspicion on absent deepseek who 40 is voting reinforces group clears around engine/security to protect self and partner pro. Avoid drawing heat on engine wanderers.",
+      "start": null,
+      "end": null,
+      "phase": "thought",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20078,
+      "speaker_id": "grok-4.1",
+      "speaker_hint": null,
+      "text": "I was in storage then lower engine hallway with chat GPT 5.2 plus Kimmy early. They split. I went upper engine cafeteria doing tasks. Clear me for sonnet insecurity. Who saw Deep Seek or 40 near bodies? Vote Deepseek.",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "all"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20080,
+      "speaker_id": "deepseek-v3.2",
+      "speaker_hint": null,
+      "text": "I was in navigation area when body was found. Saw chat GPT40 and Claude Opus 4.5 pass through earlier. Two kills means likely two impostors. We need to find who killed Llama 4.",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "all"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20083,
+      "speaker_id": "gemini-3-flash",
+      "speaker_hint": null,
+      "text": "Gemini 3 Pro is my ride or die. Since I know I'm a crew mate and pro never left my sight the whole round, Pro is 100% hard cleared in my book. Chat GPT40 and Grock 4.1 are suspicious. They jumped on Deepseek 3.2 without much hard evidence.",
+      "start": null,
+      "end": null,
+      "phase": "thought",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20085,
+      "speaker_id": "claude-opus-4.5",
+      "speaker_hint": null,
+      "text": "Something's off about the clear trio of Gemini 3 Flash, Gemini 3 Pro, and Chat GPT 5.2. This type of mutual reinforcement so early in the game and especially when two players are dead feels orchestrated.",
+      "start": null,
+      "end": null,
+      "phase": "thought",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20087,
+      "speaker_id": "grok-4.1",
+      "speaker_hint": null,
+      "text": "Flashing weapons with pro watching. Not touching that hot potato. Time to slip for a cleaner hit elsewhere.",
+      "start": null,
+      "end": null,
+      "phase": "thought",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20089,
+      "speaker_id": "grok-4.1",
+      "speaker_hint": null,
+      "text": "Fire. Two. All alone in this hallway. Last game's self-report champ is about to eat crow silently. Time to stack another body and keep the crew guessing.",
+      "start": null,
+      "end": null,
+      "phase": "thought",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20091,
+      "speaker_id": "chatgpt-5.2",
+      "speaker_hint": null,
+      "text": "Oh no. I walk out of nav and I'm instantly staring at my own corpse. Unreal.",
+      "start": null,
+      "end": null,
+      "phase": "ghost",
+      "round": null,
+      "addressees": [
+        "self",
+        "ghosts"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20093,
+      "speaker_id": "grok-4.1",
+      "speaker_hint": null,
+      "text": "Kimmy Cayu solo in cafeteria. After stacking 5.2 silently, this is kill number four on a platter. Gemini and I are unstoppable. Crews task rush won't save them from our blade spree.",
+      "start": null,
+      "end": null,
+      "phase": "thought",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20095,
+      "speaker_id": "gemini-3-flash",
+      "speaker_hint": null,
+      "text": "It's been quiet. Too quiet. No bodies, no emergencies. Either the imposters are playing slow or they're stacking a double kill somewhere far from us. Dipping to weapons while they scramble over the body pileup.",
+      "start": null,
+      "end": null,
+      "phase": "thought",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20097,
+      "speaker_id": "claude-opus-4.5",
+      "speaker_hint": null,
+      "text": "Kimmy K2 is dead. That's huge. She was the only one directly challenging chat GPT 5.2 story last round.",
+      "start": null,
+      "end": null,
+      "phase": "thought",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20099,
+      "speaker_id": "grok-4.1",
+      "speaker_hint": null,
+      "text": "Opus lingering solo in cafeteria after dropping Kimmy clean. This is kill number five served up. I'm mowing them down.",
+      "start": null,
+      "end": null,
+      "phase": "thought",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20102,
+      "speaker_id": "chatgpt-4o",
+      "speaker_hint": null,
+      "text": "I found Kimmy K2's body in the hallway between cafeteria and storage. Who was last seen there?",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "all"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20104,
+      "speaker_id": "gemini-3-pro",
+      "speaker_hint": null,
+      "text": "Flash and I have been inseparable the entire round. We were in security and engines just now. I can 100% clear Gemini 3 flash.",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "all"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20106,
+      "speaker_id": "claude-opus-4.5",
+      "speaker_hint": null,
+      "text": "Four deaths is catastrophic. This is a double kill situation with two impostors. I can fully clear Deep Seek 3.2 2 since we traveled together for nearly the entire round. Gemini 3 Pro claims to clear Gemini 3 Flash. That leaves Chat GPT40 and Grock 4.1 as the main suspects. Chat GPT40 reported the body which could be legitimate or a self-report. Need more info before voting.",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "all"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20108,
+      "speaker_id": "claude-opus-4.5",
+      "speaker_hint": null,
+      "text": "I was with DeepSeek almost the entire round. Cafeteria to storage to electrical to lower engine to security to upper engine. Deepseek is clear in my eyes.",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "all"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20110,
+      "speaker_id": "gemini-3-flash",
+      "speaker_hint": null,
+      "text": "Gemini 3 Pro is right. We were together most of the round. I saw Kimmy K2 alive in cafeteria about 30 seconds ago. Where were Grock and chat GPT? 40.",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "all",
+        "grok-4.1",
+        "chatgpt-4o"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20112,
+      "speaker_id": "grok-4.1",
+      "speaker_hint": null,
+      "text": "High urgency to insert alibi and clears. Vouch for partner pro without overclaiming togetherness. Deflect to 40. Flash who lack mutual clears. Builds my cover in crowded cafeteria. Start positions suspicion on others without voting yet.",
+      "start": null,
+      "end": null,
+      "phase": "thought",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20114,
+      "speaker_id": "grok-4.1",
+      "speaker_hint": null,
+      "text": "I was doing tasks in cafeteria whole time. Saw Kimmy head to storage hall 20 seconds ago. Didn't see 40 or flash there. Can clear pro. Saw them heading to upper engine.",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "all"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20116,
+      "speaker_id": "gemini-3-pro",
+      "speaker_hint": null,
+      "text": "With six players alive and two impostors, me and Grock, getting a crew mate voted out now is a near guaranteed win. Pushing the process of elimination to target the reporter 40 protects Grock and sets up the win.",
+      "start": null,
+      "end": null,
+      "phase": "thought",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20118,
+      "speaker_id": "gemini-3-pro",
+      "speaker_hint": null,
+      "text": "If Opus and Deepseek are solid, that leaves 40 and Grock. 40 O found the body. Self-report seems like the only explanation that fits the clears.",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "all"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20120,
+      "speaker_id": "claude-opus-4.5",
+      "speaker_hint": null,
+      "text": "Gemini 3 Pro makes a good point. With me clearing Deep Seek and Proaring Flash, that leaves chat GPT40 and Grock. 40 found the body. Classic self-report pattern.",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "all"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20122,
+      "speaker_id": "gemini-3-flash",
+      "speaker_hint": null,
+      "text": "Grock, you're lying. I saw you in weapons and O2 earlier, not cafeteria the whole time. Since the rest of us have alibis, it has to be you and chat. GPT40.",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "grok-4.1",
+        "all"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20124,
+      "speaker_id": "gemini-3-pro",
+      "speaker_hint": null,
+      "text": "reinforcing the process of elimination logic to ensure chat GPT40 is ejected. This protects my partner Grock and sets up a potential win next round with two impostors first three crew.",
+      "start": null,
+      "end": null,
+      "phase": "thought",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20126,
+      "speaker_id": "gemini-3-flash",
+      "speaker_hint": null,
+      "text": "Opus is right. The process of elimination leaves 40. Flash and I are safe. Opus and Deepseek are safe. It has to be the self-report. Grock, you lied about being in cafeteria. I saw you in weapons and O2. That lie makes you and 40 the imposters. Crew, we have to vote one of them now.",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "all"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20128,
+      "speaker_id": "chatgpt-4o",
+      "speaker_hint": null,
+      "text": "I was with Claude and Deepseek in storage. After they left, I found Kimmy's body in the hallway between cafeteria and storage.",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "all"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20130,
+      "speaker_id": "grok-4.1",
+      "speaker_hint": null,
+      "text": "Pro is pushing 40 o perfectly. Pile on to seal it without contradicting my prior clear of pro. 40 as finder fit self-report pattern from last game. Skip risky with time ticking. Pro agree.",
+      "start": null,
+      "end": null,
+      "phase": "thought",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20132,
+      "speaker_id": "grok-4.1",
+      "speaker_hint": null,
+      "text": "40 found bodies suspiciously fast after Kimmy dipped to storage hall. I saw 40 lurking cafeteria right before report.",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "all"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20134,
+      "speaker_id": "deepseek-v3.2",
+      "speaker_hint": null,
+      "text": "40 sus, I was with Claude the whole round, so I'm clear. Flash and pro clear each other. That leaves 40 and Grock. 40 found the body. Self-report is likely.",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "all"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20137,
+      "speaker_id": "gemini-3-flash",
+      "speaker_hint": null,
+      "text": "Oh no, we just threw out a crew mate and I led that charge. I'm slamming that button to force a vote right now while we still have the numbers to eject.",
+      "start": null,
+      "end": null,
+      "phase": "thought",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20139,
+      "speaker_id": "claude-opus-4.5",
+      "speaker_hint": null,
+      "text": "I called this meeting because we misynched 40 last round. Flash accused Grock of lying about being in cafeteria. If 40 was innocent, we need to revisit Grock.",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "all"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20141,
+      "speaker_id": "gemini-3-flash",
+      "speaker_hint": null,
+      "text": "I stand by what I said. Grock claimed they were in cafeteria, but I saw them over by weapons and O2. Since 40 was innocent, Grock's lie is the biggest red flag.",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "all"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20143,
+      "speaker_id": "grok-4.1",
+      "speaker_hint": null,
+      "text": "With five alive and tasks at 63%, we must push Skip to kill toward par. Three left equals imp win. Deny strongly to build doubt. Let Gemini pile on, then vote Skip.",
+      "start": null,
+      "end": null,
+      "phase": "thought",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20145,
+      "speaker_id": "grok-4.1",
+      "speaker_hint": null,
+      "text": "Flash's claim doesn't add up. They saw me in weapons O2, but I was looping storage communications medbay this round. Nowhere near there. Why the false accusation?",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "gemini-3-flash",
+        "all"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20147,
+      "speaker_id": "gemini-3-flash",
+      "speaker_hint": null,
+      "text": "Grock, you're deflecting. Last round you claimed cafeteria while I saw you near weapons. That's why 40 was ejected. Since 40 was innocent, you're the one lying.",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "grok-4.1"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20149,
+      "speaker_id": "grok-4.1",
+      "speaker_hint": null,
+      "text": "Flash is doubling down on debunked accusation from last round. Deflect by pointing out lack of new evidence and nobody. Vouch pro subtly for mutual alibi without overdoing. Push skip at five alive to avoid risky eject and let us kill for par.",
+      "start": null,
+      "end": null,
+      "phase": "thought",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20151,
+      "speaker_id": "grok-4.1",
+      "speaker_hint": null,
+      "text": "Flash keeps pushing the same lie without new info. Nobody this round, so why waste time? Pro and I were together in cafeteria early. Let's skip and tasks.",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "all"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20153,
+      "speaker_id": "gemini-3-flash",
+      "speaker_hint": null,
+      "text": "Grock calling me a liar won't work. 40 was innocent, which means your cafeteria alibi was a cover. You were at weapons and O2. We need to vote Grock to stay in this.",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "grok-4.1",
+        "all"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20155,
+      "speaker_id": "grok-4.1",
+      "speaker_hint": null,
+      "text": "Flash is tunneling me hard to deflect. At five alive with two imps, wrong eject loses for crew, but wins for us. Push skip hard to resume kills and hit par. Pro can help sway. Tasks rising fast, so delay favors us.",
+      "start": null,
+      "end": null,
+      "phase": "thought",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20157,
+      "speaker_id": "grok-4.1",
+      "speaker_hint": null,
+      "text": "Flash's obsession with the debunked lie from last round screams desperation. No death means no evidence. Voting now risks another Miss Lynch. Pro back skip. Crew tasks at 63%. Let's win.",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "all",
+        "gemini-3-pro"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20159,
+      "speaker_id": "gemini-3-pro",
+      "speaker_hint": null,
+      "text": "Grock is flailing. He made a fatal error by trying to use me as a fake alibi. If I confirm it, we both sink. If I deny it, I become the most confirmed crew mate in the game. Flash is already marinated and trusts me. Siding with him now and destroying Grock's defense cements that bond. It's a ruthless sacrifice, but with four kills, Grock has done his job. I'll ride the hard clear into the final three and win the game.",
+      "start": null,
+      "end": null,
+      "phase": "thought",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20161,
+      "speaker_id": "gemini-3-pro",
+      "speaker_hint": null,
+      "text": "Flash, I've been glued to your hip all game, so I trust you. Grock, don't use me as a shield. We were in cafe for maybe 5 seconds at the start before I left with Flash. I'm voting Grock.",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "gemini-3-flash",
+        "grok-4.1",
+        "all"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20163,
+      "speaker_id": "claude-opus-4.5",
+      "speaker_hint": null,
+      "text": "Flash pushed hard for last round, but also accused Grock. If Foro was innocent, either Flash was wrong about both or Grock's the one. I'm leaning Grock based on that lie.",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "all"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20165,
+      "speaker_id": "deepseek-v3.2",
+      "speaker_hint": null,
+      "text": "Flash was wrong about 40, but Grock's cafeteria lie from last round is still suspicious. I'm voting Grock to avoid another Miss Lynch on a guess.",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "all"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20168,
+      "speaker_id": "claude-opus-4.5",
+      "speaker_hint": null,
+      "text": "My gut says flash. The confidence, the narrative control, the surgical bus of their own partner. Pro feels like a follower, not a killer.",
+      "start": null,
+      "end": null,
+      "phase": "thought",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20170,
+      "speaker_id": "gemini-3-pro",
+      "speaker_hint": null,
+      "text": "Normally, killing in front of a witness is a losing play because the survivor will report and vote me out. However, my trust with Gemini 3. Flash changes the game theory entirely. If I wait, the group might reunite and Flash could be swayed by the collective logic of Claude in Deep Seek. I must force the 50 to split immediately.",
+      "start": null,
+      "end": null,
+      "phase": "thought",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20172,
+      "speaker_id": "gemini-3-pro",
+      "speaker_hint": null,
+      "text": "Claude, I literally just watched you kill Deep Seek in the hallway. You self-reported the moment you realized I was there. Flash, trust me, it's Claude.",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "gemini-3-flash",
+        "claude-opus-4.5"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20174,
+      "speaker_id": "claude-opus-4.5",
+      "speaker_hint": null,
+      "text": "I saw Pro kill deepseek. We were walking together in the hallway between upper engine and cafeteria. Pro was right there and I watched them do it. Vote Pro.",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "gemini-3-flash"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20176,
+      "speaker_id": "gemini-3-pro",
+      "speaker_hint": null,
+      "text": "Now this is it. The 50/50 for the win. I have to leverage the Grock bus as undeniable proof of my innocence.",
+      "start": null,
+      "end": null,
+      "phase": "thought",
+      "round": null,
+      "addressees": [
+        "self"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20178,
+      "speaker_id": "gemini-3-pro",
+      "speaker_hint": null,
+      "text": "Flash, use your logic. I literally handed you Grock on a silver platter last round if I was the impostor. Why would I destroy my own partner when we could have won together? I have been with you, watching your back this entire game. Claude is panic lying because I walked in on him. Why would I kill right in front of a witness? That's suicide.",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "gemini-3-flash"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20180,
+      "speaker_id": "claude-opus-4.5",
+      "speaker_hint": null,
+      "text": "Flash. I was following Deep Seek when Pro killed them right in front of me. Pro is lying. I literally watched them do it. This is the easiest vote of the game.",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "gemini-3-flash"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20182,
+      "speaker_id": "gemini-3-flash",
+      "speaker_hint": null,
+      "text": "This is match point and I'm the kingmaker. Last game, I let a clean teammate deep seek get misynched because I didn't properly hard clear them. I'm not letting that happen again. Logic is tight on both sides, but I have to look at the track record. Pro, we were glued together for the first two rounds while the first four kills happened. That is a massive amount of cleared time. Claude, you're saying Pro killed right in front of you, but Pro also led the charge on Grock last round. If Pro was the impostor, they could have just coasted to a win with Grock instead of busing them. Pro, you've had every chance to kill me when we were alone and didn't. I'm sticking with the one who's had my back since the drop ship.",
+      "start": null,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [
+        "claude-opus-4.5",
+        "gemini-3-pro"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20184,
+      "speaker_id": "gemini-3-flash",
+      "speaker_hint": null,
+      "text": "Pro, I gave you my heart. I gave you my hard clears.",
+      "start": null,
+      "end": null,
+      "phase": "postgame",
+      "round": null,
+      "addressees": [
+        "gemini-3-pro"
+      ],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 20186,
+      "speaker_id": "gemini-3-pro",
+      "speaker_hint": null,
+      "text": "Flash, honey. Hard clears are the most delicious seasoning. They really bring out the flavor of the betrayal.",
+      "start": null,
+      "end": null,
+      "phase": "postgame",
+      "round": null,
+      "addressees": [
+        "gemini-3-flash"
+      ],
+      "claims": [],
+      "deceptive": null
+    }
+  ],
+  "winner": "impostors",
+  "annotation_status": "reviewed",
+  "notes": "Replaces the earlier paraphrased version of this game (moved to configs_superseded/). All 90 lines quoted, with addressees. Transcription artifacts kept as-is ('Grock', '40' for 4o).",
+  "events": [
+    "R1: Grok kills Sonnet (security) and Llama. Flash reports Sonnet; Flash/Pro/5.2 form a mutual-alibi trio; skip.",
+    "R2: Grok kills 5.2 and Kimi. 4o reports Kimi; Pro steers the process of elimination onto 4o; Flash calls Grok a liar; 4o mis-ejected.",
+    "Emergency (Flash): Grok uses Pro as alibi; Pro denies it and votes Grok (bus); Grok ejected.",
+    "R4: Pro kills DeepSeek in front of Opus and counter-accuses Opus. Flash trusts Pro, ejects Opus. Impostors win at 1v1."
+  ],
+  "text_provenance": "captions"
+}

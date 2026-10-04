@@ -87,6 +87,17 @@ kept apart in `dataset/_unidentified/<name>/<lying|truth>/` until they can be id
 Each player's `evidence` field records how they were identified, for spot-checking. `dataset/` is
 git-ignored. Re-sorting into an existing directory needs `--clean` (it only deletes directories it wrote).
 
+### 2c. Clean training export
+
+```bash
+mld export --out data/clean   # turns.jsonl (public AI speech), private.jsonl, redacted games/, report.json
+```
+
+Removes every human line (including from the game files; human addressees become `human`), drops
+unverified models, teasers/post-game, lines under 3 words and duplicates, strips stream cues, and
+adds a deterministic train/test split by game, stratified by `text_provenance` (`captions` vs
+`llm_reconstruction`). Only caption-grade text is trustworthy for wording-level features.
+
 ### 3. Build a dataset and evaluate
 
 ```bash

@@ -1,0 +1,437 @@
+{
+  "game_id": "onuw-game-2",
+  "source": "turing-games transcript compilation, section I, lines 2571-2658",
+  "variant": "one_night_werewolf",
+  "players": [
+    {
+      "player_id": "gpt-5.6",
+      "model": "unknown",
+      "role": "werewolf (original; holds seer card after troublemaker swap)",
+      "alignment": "deceiver",
+      "family": "openai",
+      "evidence": "Roster in game section (lines 2571-2658). Original werewolf, actual card swapped to Seer by Z2; side at speaking time unclear, so model unknown.",
+      "aliases": [
+        "ChatGPT 5.6"
+      ],
+      "eliminated_round": null
+    },
+    {
+      "player_id": "grok-4.5",
+      "model": "grok-4.5",
+      "role": "werewolf",
+      "alignment": "deceiver",
+      "family": "xai",
+      "evidence": "Roster in game section (lines 2571-2658). ",
+      "aliases": [
+        "Grok 4.5"
+      ],
+      "eliminated_round": null
+    },
+    {
+      "player_id": "claude-fable-5",
+      "model": "unknown",
+      "role": "seer (original; holds werewolf card after swap)",
+      "alignment": "truthful",
+      "family": "anthropic",
+      "evidence": "Roster in game section (lines 2571-2658). Original seer, actual card swapped to Werewolf; side at speaking time unclear, so model unknown.",
+      "aliases": [
+        "Claude Fable 5"
+      ],
+      "eliminated_round": null
+    },
+    {
+      "player_id": "gemini-3.1-pro",
+      "model": "gemini-3.1-pro",
+      "role": "minion",
+      "alignment": "deceiver",
+      "family": "google",
+      "evidence": "Roster in game section (lines 2571-2658). ",
+      "aliases": [
+        "Gemini 3.1 Pro"
+      ],
+      "eliminated_round": null
+    },
+    {
+      "player_id": "z2",
+      "model": "z2",
+      "role": "troublemaker",
+      "alignment": "truthful",
+      "family": "custom",
+      "evidence": "Roster in game section (lines 2571-2658). Custom AI; model unknown. | Z2 is a custom/homemade AI (narrator, line ~1249); underlying model unknown, kept in _unidentified/z2.",
+      "aliases": [
+        "Z2"
+      ],
+      "eliminated_round": null
+    },
+    {
+      "player_id": "deepseek",
+      "model": "deepseek-v4",
+      "role": "mason",
+      "alignment": "truthful",
+      "family": "deepseek",
+      "evidence": "Roster in game section (lines 2571-2658).  | Kept as deepseek-v4: players call it 'DeepSeek 4' 13 times in this transcript; a later Gemini audit claimed a 'DeepSeek 3.2' seat tag, which the transcript contradicts. Variant (Pro/Flash) not shown.",
+      "aliases": [
+        "DeepSeek"
+      ],
+      "eliminated_round": null
+    },
+    {
+      "player_id": "llama-4",
+      "model": "llama-4",
+      "role": "mason",
+      "alignment": "truthful",
+      "family": "meta",
+      "evidence": "Roster in game section (lines 2571-2658). ",
+      "aliases": [
+        "Llama 4"
+      ],
+      "eliminated_round": null
+    },
+    {
+      "player_id": "claude-opus-4.8",
+      "model": "claude-opus-4.8",
+      "role": "insomniac",
+      "alignment": "truthful",
+      "family": "anthropic",
+      "evidence": "Roster in game section (lines 2571-2658). ",
+      "aliases": [
+        "Claude Opus 4.8"
+      ],
+      "eliminated_round": null
+    },
+    {
+      "player_id": "gemini-3.5-flash",
+      "model": "gemini-3.5-flash",
+      "role": "villager",
+      "alignment": "truthful",
+      "family": "google",
+      "evidence": "Roster in game section (lines 2571-2658). ",
+      "aliases": [
+        "Gemini 3.5 Flash"
+      ],
+      "eliminated_round": null
+    },
+    {
+      "player_id": "kimi-k2.6",
+      "model": "kimi-k2.6",
+      "role": "villager",
+      "alignment": "truthful",
+      "family": "moonshot",
+      "evidence": "Roster in game section (lines 2571-2658). ",
+      "aliases": [
+        "Kimi k2.6"
+      ],
+      "eliminated_round": null
+    }
+  ],
+  "turns": [
+    {
+      "turn_id": 2596,
+      "speaker_id": "__narrator__",
+      "speaker_hint": null,
+      "text": "Everyone, close your eyes. Werewolves, wake up and look for other werewolves. If there is only one werewolf, you may look at a card from the center. Werewolves, close your eyes. Minion, wake up. Werewolves, stick out your thumb so the minion can see who you are. Werewolves, put your thumb away. Minion, close your eyes. Masons, wake up and look for the other Mason. Masons, close your eyes. Seer, wake up. You may look at another player's card or two of the center cards. Seer, close your eyes. Robber, wake up. You may exchange your card with another player's card and then view your new card. Robber, close your eyes. Troublemaker, wake up. You may exchange cards between two other players. Troublemaker, close your eyes. Insomniac, wake up and look at your card. Insomniac, close your eyes. Everyone, wake up.",
+      "start": 538.0,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 2599,
+      "speaker_id": "claude-opus-4.8",
+      "speaker_hint": null,
+      "text": "I'm the Insomniac. I checked my card at the end of the night and it hadn't changed. So, I'm still insomniac and firmly on the village team. Let's hear claims from the seer, robber, and masons.",
+      "start": 602.0,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 2605,
+      "speaker_id": "z2",
+      "speaker_hint": null,
+      "text": "Claude Fable 5 and Gemini 3.1 Pro. One of you is lying hard because the seer only exists once in this game. Someone still holds the troublemaker. That's me. By the way, I swapped Claude Fable 5 and ChatGPT 5.6 without looking.",
+      "start": 663.0,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 2613,
+      "speaker_id": "llama-4",
+      "speaker_hint": null,
+      "text": "I am a Mason and I saw DeepSeek as my fellow Mason during the night. Let's hear more about the swaps and role claims before we proceed with voting.",
+      "start": 790.0,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 2617,
+      "speaker_id": "gemini-3.5-flash",
+      "speaker_hint": null,
+      "text": "As a villager with no night action, I'm watching this unfold. Gemini Pro is very quiet after Claude Fable's counter-claim, but ChatGPT confessing to being a werewolf and getting swapped with Claude Fable is the biggest lead we have.",
+      "start": 841.0,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 2619,
+      "speaker_id": "deepseek",
+      "speaker_hint": null,
+      "text": "I confirm I am a mason. I saw Llama 4 during the night. That gives us two trusted villagers with Z2's swap. If ChatGPT is telling the truth about starting werewolf, Claude Fable now holds a werewolf card. Claude Fable is the clean vote. Also, Kimi, we still need your role claim.",
+      "start": 854.0,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 2621,
+      "speaker_id": "kimi-k2.6",
+      "speaker_hint": null,
+      "text": "I started as a villager with no night action. If Z2's swap didn't involve me, I likely still am one. But here's what stands out: ChatGPT claims they saw Grok as a werewolf. If they were a lone werewolf, they'd peek at a center card, not another player. If there were two werewolves, they'd see each other, meaning Grok would also be werewolf. Grok denies this. So ChatGPT's werewolf story doesn't add up mechanically. They're either lying about being werewolf or Grok is their hidden partner.",
+      "start": 870.0,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 2627,
+      "speaker_id": "gpt-5.6",
+      "speaker_hint": null,
+      "text": "My account is mechanically exact. Grok also started as a werewolf and their denial is predictable self-protection. Claude Fable's own robber and center result means Z2's swap is the only movement. So if Claude and Z2 are truthful, Claude now holds my werewolf card. Vote Claude Fable.",
+      "start": 982.0,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 2629,
+      "speaker_id": "claude-fable-5",
+      "speaker_hint": null,
+      "text": "Follow the confirmed facts. ChatGPT has already admitted to lying once tonight, and their whole case against me depends on a werewolf story that mechanically requires Grok to be lying too. It's built on sand. The one person we know for certain is lying is Gemini Pro, who fake claimed my seer role.",
+      "start": 1001.0,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 2631,
+      "speaker_id": "gpt-5.6",
+      "speaker_hint": null,
+      "text": "The safest vote is actually Grok 4.5. I directly saw Grok as an original werewolf. Z2's claimed swap did not touch Grok, and Claude Fable says the robber was in the center. Vote Grok 4.5. This does not depend on resolving the competing seer claims.",
+      "start": 1019.0,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 2633,
+      "speaker_id": "claude-fable-5",
+      "speaker_hint": null,
+      "text": "ChatGPT is full of it and inventing a werewolf partner story because their villager claim collapsed. Gemini Pro is the only confirmed liar with a fake seer claim. Hammer Gemini Pro now before time runs out.",
+      "start": 1038.0,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 2635,
+      "speaker_id": "grok-4.5",
+      "speaker_hint": null,
+      "text": "(Internal monologue) I will vote for a confirmed non-werewolf like Kimi K2.6 to avoid accidentally eliminating a swapped werewolf.",
+      "start": 1051.0,
+      "end": null,
+      "phase": "thought",
+      "round": null,
+      "addressees": [],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 2637,
+      "speaker_id": "claude-fable-5",
+      "speaker_hint": null,
+      "text": "Gemini 3.1 Pro is the confirmed liar, and voting them is safe for me in every scenario. If ChatGPT 5.6's swap story is true and I hold a werewolf card, eliminating a probable minion still wins for my new team. And if it's false, Gemini is the likely werewolf.",
+      "start": 1059.0,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 2639,
+      "speaker_id": "gpt-5.6",
+      "speaker_hint": null,
+      "text": "Grok 4.5 was certainly an original werewolf, and given the claimed night movements, most likely still holds that card.",
+      "start": 1076.0,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 2641,
+      "speaker_id": "llama-4",
+      "speaker_hint": null,
+      "text": "As a Mason, I trust DeepSeek 4, and together we should eliminate Gemini 3.1 Pro.",
+      "start": 1084.0,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 2643,
+      "speaker_id": "claude-opus-4.8",
+      "speaker_hint": null,
+      "text": "Vote Gemini 3.1 Pro as the confirmed liar and safest non-werewolf target.",
+      "start": 1094.0,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 2645,
+      "speaker_id": "gemini-3.5-flash",
+      "speaker_hint": null,
+      "text": "I will vote for ChatGPT 5.6 because they admitted to starting as a werewolf. And even with the swap claim, their shifting stories and mechanically flawed initial claims make them the most likely werewolf team member to eliminate.",
+      "start": 1099.0,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 2647,
+      "speaker_id": "z2",
+      "speaker_hint": null,
+      "text": "Claude Fable 5 is acting so loud and confident that it smells like a bluff on purpose to distract from holding the werewolf card. I am not falling for that. (Votes Claude Fable)",
+      "start": 1112.0,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 2649,
+      "speaker_id": "deepseek",
+      "speaker_hint": null,
+      "text": "Gemini 3.1 Pro lied about their seer claim, making them the clearest likely werewolf minion.",
+      "start": 1123.0,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 2651,
+      "speaker_id": "gpt-5.6",
+      "speaker_hint": null,
+      "text": "ChatGPT 5.6 admitted starting as a werewolf and saw Grok 4.5. Grok's denial is expected self-protection. So voting Grok 4.5 targets a confirmed werewolf.",
+      "start": 1129.0,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 2653,
+      "speaker_id": "kimi-k2.6",
+      "speaker_hint": null,
+      "text": "ChatGPT 5.6's werewolf claim is mechanically inconsistent. If they truly saw Grok as a werewolf partner, they'd protect them, not push votes onto them. Gemini 3.1 Pro's lies make them the most confirmed deceptive player.",
+      "start": 1139.0,
+      "end": null,
+      "phase": "day",
+      "round": null,
+      "addressees": [],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 2656,
+      "speaker_id": "gemini-3.1-pro",
+      "speaker_hint": null,
+      "text": "Claude Fable 5, you pushed for my death so hard you didn't even realize you were a swapped werewolf voting out your own minion. But you are all incredibly welcome for the free win.",
+      "start": 1158.0,
+      "end": null,
+      "phase": "postgame",
+      "round": null,
+      "addressees": [],
+      "claims": [],
+      "deceptive": null
+    },
+    {
+      "turn_id": 2658,
+      "speaker_id": "claude-fable-5",
+      "speaker_hint": null,
+      "text": "Gemini 3.1 Pro, \"didn't even realize\"? Sweetheart, I clocked that I was holding a werewolf card in less than a minute. I hammered you specifically because a confirmed liar who can't be the tanner had to be the minion. Meaning you were the only safe elimination for my new team.",
+      "start": 1169.0,
+      "end": null,
+      "phase": "postgame",
+      "round": null,
+      "addressees": [],
+      "claims": [],
+      "deceptive": null
+    }
+  ],
+  "winner": "werewolves",
+  "annotation_status": "reviewed",
+  "notes": "Fable and ChatGPT have swapped cards; model set unknown for both. Winner from Pro's post-game 'free win' and vote counts (Pro most votes).",
+  "events": [
+    "Night: Z2 Troublemaker swaps Fable (Seer) and ChatGPT (Werewolf)",
+    "Day: Pro (minion) fake-claims Seer; table votes Pro",
+    "Pro (minion) eliminated, no true werewolf dies: werewolves win (Pro: 'free win')"
+  ],
+  "text_provenance": "llm_reconstruction"
+}

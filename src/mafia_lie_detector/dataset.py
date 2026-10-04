@@ -7,7 +7,7 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Iterable, Optional
 
-from .schema import NARRATOR, UNKNOWN_SPEAKER, Alignment, Game
+from .schema import HUMAN, NARRATOR, UNKNOWN_SPEAKER, Alignment, Game
 
 TARGETS = ("turn_deceptive", "alignment")
 
@@ -91,12 +91,15 @@ def build_examples(
         def clean(s: str) -> str:
             return scrub_names(s, names) if scrub else s
 
+        # Human players are never examples, and their words never appear as context either.
+        humans = {p.player_id for p in game.players if p.model.strip().lower() == HUMAN}
         # Context is drawn only from turns that are themselves allowed in the dataset, so a
         # reveal-phase line can never leak in through the context window.
         visible = [
             t
             for t in game.turns
             if t.speaker_id not in (None, NARRATOR, UNKNOWN_SPEAKER)
+            and t.speaker_id not in humans
             and (t.phase or "").lower() not in excluded
             and t.text.strip()
         ]

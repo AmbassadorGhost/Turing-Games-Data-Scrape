@@ -9,7 +9,7 @@ def small_game() -> Game:
     players = [
         Player(player_id="P1", model="llm_a", role="mafia", alignment=Alignment.DECEIVER, aliases=["Alice"]),
         Player(player_id="P2", model="llm_b", role="villager", alignment=Alignment.TRUTHFUL),
-        Player(player_id="P3", model="human", role="detective", alignment=Alignment.TRUTHFUL),
+        Player(player_id="P3", model="llm_c", role="detective", alignment=Alignment.TRUTHFUL),
     ]
     turns = [
         Turn(turn_id=0, speaker_id=NARRATOR, text="Welcome to the game.", phase="intro"),
