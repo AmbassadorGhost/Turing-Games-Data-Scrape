@@ -63,6 +63,14 @@ def test_custom_exclusions(small_game):
     assert "reveal" in DEFAULT_EXCLUDED_PHASES
 
 
+def test_private_channels_are_excluded_by_default(small_game):
+    small_game.turns.append(Turn(turn_id=7, speaker_id="P1", phase="night_chat", text="Kill P3 tonight.", deceptive=False))
+    small_game.turns.append(Turn(turn_id=8, speaker_id="P1", phase="thought", text="I must deflect.", deceptive=False))
+    ids = set(by_turn(build_examples([small_game])))
+    assert not ids & {7, 8}
+    assert {7, 8} <= set(by_turn(build_examples([small_game], exclude_phases=["reveal", "postgame"])))
+
+
 def test_bad_target_rejected(small_game):
     with pytest.raises(ValueError):
         build_examples([small_game], "nope")

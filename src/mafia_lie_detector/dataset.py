@@ -13,7 +13,12 @@ TARGETS = ("turn_deceptive", "alignment")
 
 # Phases that talk about the outcome of the game. Their text names roles ("X was the mafia"),
 # so training on them teaches the model to read the answer key, not to detect lies.
-DEFAULT_EXCLUDED_PHASES = frozenset({"intro", "reveal", "postgame", "outro"})
+OUTCOME_PHASES = frozenset({"intro", "reveal", "postgame", "outro", "preview"})
+# Private channels: internal thoughts, evil-team night chat, night actions, dead players' chat.
+# A mafia player planning with teammates is not lying to anyone, so these are kept in game files
+# but left out of training data unless asked for.
+PRIVATE_PHASES = frozenset({"thought", "night_chat", "night_action", "ghost"})
+DEFAULT_EXCLUDED_PHASES = OUTCOME_PHASES | PRIVATE_PHASES
 
 PLAYER_TOKEN = "<PLAYER>"
 
