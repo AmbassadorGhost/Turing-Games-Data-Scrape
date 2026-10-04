@@ -77,6 +77,7 @@ class Turn(BaseModel):
     end: Optional[float] = None
     phase: Optional[str] = None  # intro | day | vote | night | reveal | postgame | ...
     round: Optional[int] = None
+    addressees: list[str] = Field(default_factory=list)  # player ids spoken to, or "all" / "self"
     claims: list[Claim] = Field(default_factory=list)
     deceptive: Optional[bool] = None
 

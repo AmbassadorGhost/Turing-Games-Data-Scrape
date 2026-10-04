@@ -124,7 +124,7 @@ def sort_games(
                         "player_id": player.player_id, "model": player.model, "family": player.family,
                         "role": player.role, "alignment": player.alignment.value,
                         "turn_id": t.turn_id, "start": t.start, "end": t.end, "phase": t.phase,
-                        "deceptive": t.deceptive, "text": t.text,
+                        "deceptive": t.deceptive, "addressees": t.addressees, "text": t.text,
                         "claims": [c.model_dump(mode="json") for c in t.claims],
                     }, ensure_ascii=False) + "\n")
             report.files += 1

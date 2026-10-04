@@ -48,6 +48,15 @@ def test_rows_carry_metadata_and_exclude_postgame_text(tmp_path):
     assert [r["text"] for r in rows] == ["P1 speaking"]  # "Well played." was postgame
     r = rows[0]
     assert (r["winner"], r["role"], r["alignment"], r["model"], r["family"]) == ("mafia", "mafia", "deceiver", "model-one", "Vendor A")
+    assert r["addressees"] == []
+
+
+def test_addressees_are_carried_into_rows(tmp_path):
+    game = make_game()
+    game.turns.append(Turn(turn_id=200, speaker_id="P1", text="P3, you are lying.", phase="day", addressees=["P3", "all"]))
+    sorting.sort_games([game], tmp_path)
+    rows = read(tmp_path / "vendor-a/model-one/lying/g1__p1.jsonl")
+    assert rows[-1]["addressees"] == ["P3", "all"]
 
 
 def test_discards_humans_unverified_models_and_missing_family_with_reasons(tmp_path):
