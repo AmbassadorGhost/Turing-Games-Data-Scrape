@@ -5,12 +5,12 @@ __pycache__/
 .env
 
 # Third-party transcripts / media: keep out of version control.
-data/raw/
-data/audio/
-data/dataset/
-dataset/
+# Everything under data/ is third-party transcript material: never commit it.
+data/*
+!data/annotations/
 data/annotations/*
 !data/annotations/.gitkeep
+dataset/
 *.wav
 *.m4a
 *.mp3
