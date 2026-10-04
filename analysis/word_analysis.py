@@ -22,7 +22,7 @@ from sklearn.metrics import average_precision_score, roc_auc_score
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from mafia_lie_detector.lexicon import (  # noqa: E402
-    NAME_TOKEN, Unit, benjamini_hochberg, build_units, fightin_words, fit_lexicon, mantel_haenszel,
+    GAME_TERMS, NAME_TOKEN, Unit, benjamini_hochberg, build_units, fightin_words, fit_lexicon, mantel_haenszel,
     name_pattern, ngrams, permutation_test, tokenize,
 )
 from mafia_lie_detector.modeling import group_kfold  # noqa: E402
@@ -340,11 +340,11 @@ def main(turns_path, games_dir, out_dir):
         for i in test:
             sr[i] = sum(w_t.get(t, 0.0) for t in set(tokenize(rows[i]["text"], scrub)))
     four = ["if", "just", "your", "why"]
-    s4 = np.array([sum(t in four for t in set(tokenize(r["text"], scrub))) for r in rows])
+    s_four = np.array([sum(t in four for t in set(tokenize(r["text"], scrub))) for r in rows])
     R.append(f"\nOnly the {len(robust)} words robust to both controls (section 4), weights refit per fold: "
              f"**AUC {roc_auc_score(yr, sr):.3f}** on held-out games (the word list itself was chosen on all data, "
              f"so this is slightly optimistic). Simply counting how many of {{if, just, your, why}} appear, with no "
-             f"fitting at all: **AUC {roc_auc_score(yr, s4):.3f}**.\n")
+             f"fitting at all: **AUC {roc_auc_score(yr, s_four):.3f}**.\n")
     # per-model breakdown of held-out-model AUC
     per = []
     for (m, train, test) in lmo:
@@ -401,6 +401,15 @@ def main(turns_path, games_dir, out_dir):
     # ---------------------------------------------------------------- 8. lexicon output
     lex = fit_lexicon(rows, scrub)
     lex.save(out / "lexicon.json")
+    gen = fit_lexicon(rows, scrub, exclude=GAME_TERMS)
+    gen.save(out / "lexicon_general.json")
+    yg, sg = eval_lexicon(rows, scrub, folds, exclude=GAME_TERMS)
+    yg2, sg2 = eval_lexicon(rows, scrub, lmo, exclude=GAME_TERMS)
+    R.append("\n### Domain-neutral lexicon\n`lexicon_general.json` drops every Mafia / Among Us / Werewolf term "
+             "(roles, votes, kills, locations, mechanics) and bare numbers, for use outside these games. "
+             f"Held-out games AUC {roc_auc_score(yg, sg):.3f}, held-out models AUC {roc_auc_score(yg2, sg2):.3f} "
+             f"(vs {roc_auc_score(y, s):.3f} / {roc_auc_score(y4, s4):.3f} with game terms): the signal is not in the "
+             f"game vocabulary. Words: {', '.join(sorted(gen.weights, key=lambda w: -gen.weights[w]))}.\n")
     for fam, frs in fam_rows.items():
         if sum(r["label"] == "lying" for r in frs) >= 15:
             fit_lexicon(frs, scrub, min_count=4, max_words=150).save(out / "lexicons" / f"{fam}.json")

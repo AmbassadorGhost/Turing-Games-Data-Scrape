@@ -114,6 +114,10 @@ python analysis/word_analysis.py data/clean/turns.jsonl data/clean/games analysi
 mld score analysis/out/lexicon.json "Why would I lie? If you're honest, your vote makes sense."
 ```
 
+`lexicon_general.json` is the domain-neutral version (no Mafia / Among Us / Werewolf terms); use it
+outside the games. `mld village lexicon_general.json --days 7 --agent DeepSeek` scores AI Village chat
+with it (a face-validity test: the Village is cooperative, so there is no ground truth there).
+
 `analysis/out/FINDINGS.md` is the write-up; `report.md` has every table; `word_stats.csv` every word.
 Method: Fightin'-Words log-odds, a within-game player-level permutation test, Mantel-Haenszel
 stratification by model / position / game type, LIWC-style categories, and a lexicon detector

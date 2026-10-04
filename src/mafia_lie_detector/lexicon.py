@@ -31,6 +31,27 @@ GENERIC_NAMES = [
 ]
 
 
+# Vocabulary that only exists because these are Mafia / Among Us / Werewolf games. A lexicon meant
+# to transfer to other settings (e.g. agents talking in AI Village) must not lean on any of it.
+GAME_TERMS = frozenset("""
+mafia mafioso mafias godfather impostor impostors imposter imposters crewmate crewmates crew villager villagers
+village town townie townies werewolf werewolves wolf wolves minion tanner jester seer robber troublemaker insomniac
+mason masons hunter drunk doctor sheriff detective vigilante vig jailor jail jailed cop medic bodyguard escort mayor
+investigator investigate investigated investigation investigations check checks checked red green clear cleared
+clears hardclear hard-clear innocent guilty flip flipped flips lynch lynched lynching mislynch mislynched wagon
+wagons bus bussing bussed hammer hammered eject ejected ejection execute executed execution vote voted votes voting
+voter unvote abstain abstained abstaining skip skipped skipping night nights nightly day days daytime kill killed
+kills killer killing murder murdered dead death deaths die died dies body bodies corpse protect protected protection
+save saved saves heal healed target targeted targets role roles claim claims claimed claiming counterclaim alibi
+alibis task tasks vent vented vents sabotage sabotaged lights blackout cams camera cameras electrical medbay
+cafeteria cafe storage navigation nav weapons shields admin security reactor o2 comms communications engine engines
+upper lower hallway hall spawn lobby meeting emergency button report reported reporting self-report parity majority
+scum scumread townread powerrole mechanic mechanics round rounds endgame
+confirmed confirm confirms slip slipped yesterday tonight today
+""".split())
+NUMERIC = re.compile(r"^\d")  # bare numbers and timestamps ("2", "4:22") are game-log artefacts
+
+
 def name_pattern(extra_names: Iterable[str] = ()) -> re.Pattern:
     names = sorted({n.lower() for n in [*GENERIC_NAMES, *extra_names] if len(n) >= 2}, key=len, reverse=True)
     return re.compile(r"(?<![a-z0-9])(?:" + "|".join(re.escape(n) for n in names) + r")(?![a-z])(?:\s*\d+(?:\.\d+)*)?", re.I)
@@ -219,7 +240,7 @@ class Lexicon:
 
 def fit_lexicon(
     rows: Iterable[dict], scrub: re.Pattern | None, *, min_count: int = 30, max_words: int = 40,
-    prior_scale: float = 0.1, shrink: float = 0.5
+    prior_scale: float = 0.1, shrink: float = 0.5, exclude: frozenset[str] = frozenset()
 ) -> Lexicon:
     """Weights = shrunk Fightin'-Words log-odds of the top |z| words; intercept = base-rate log-odds.
 
@@ -232,7 +253,8 @@ def fit_lexicon(
     for r in rows:
         (ca if r["label"] == "lying" else cb).update(set(tokenize(r["text"], scrub)))
     stats = fightin_words(ca, cb, prior_scale)
-    eligible = [w for w in stats if ca[w] + cb[w] >= min_count and w != NAME_TOKEN]
+    eligible = [w for w in stats if ca[w] + cb[w] >= min_count and w != NAME_TOKEN and w not in exclude
+                and not (exclude and NUMERIC.match(w))]
     top = sorted(eligible, key=lambda w: -abs(stats[w][1]))[:max_words]
     weights = {w: shrink * stats[w][0] for w in top}
     n_ly = sum(r["label"] == "lying" for r in rows)

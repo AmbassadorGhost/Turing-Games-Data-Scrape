@@ -57,6 +57,21 @@ generalise, and the honest number for "does this transfer to a model we have nev
 0.60: real, weak. Per-model AUCs when held out range from 0.29 (gemini-3-pro, 7 lying lines) to
 0.96 (gpt-5.5, 3 lying lines); those extremes are sample noise.
 
+## 3b. A domain-neutral version
+
+`lexicon_general.json` drops every game term (roles, votes, kills, locations, mechanics) and bare
+numbers. It loses nothing: held-out games AUC 0.62 (vs 0.63), held-out *models* AUC 0.62 (vs 0.60).
+The signal was never in the game vocabulary. Its words are almost all function words:
+
+- deceiving: if, makes, agree, exactly, why, how, don't, just, your, i'll, what, you're, seems, it's,
+  didn't, still, too, feels, like
+- truthful: i, and, one, they, trying, in, were, at, my, near, was, two, saw, them, where, most,
+  found, did, both, !
+
+This is the version to try outside the games (e.g. on AI Village agents), with the caveat that there
+it measures "talks like someone on the lying side of a social-deduction game", which has no ground
+truth in a cooperative setting. Treat its output there as a stance score to read, not a verdict.
+
 ## 4. The three tiers, with this data
 
 1. **General detector**: viable at the "weak signal" level. Use the short lexicon.

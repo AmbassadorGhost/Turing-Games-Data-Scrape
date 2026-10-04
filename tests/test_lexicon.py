@@ -68,3 +68,14 @@ def test_fit_score_roundtrip(tmp_path):
     assert math.isclose(lex.intercept, math.log((60 + 1) / (60 + 1)), abs_tol=1e-9)
     lex.save(tmp_path / "lex.json")
     assert Lexicon.load(tmp_path / "lex.json").score("why if") == pytest.approx(lex.score("why if"))
+
+
+def test_exclude_removes_game_terms_and_numbers():
+    from mafia_lie_detector.lexicon import GAME_TERMS
+    rows = rows_with_signal()
+    for r in rows:
+        if r["label"] == "lying":
+            r["text"] += " mafia vote 2"
+    lex = fit_lexicon(rows, None, min_count=3, max_words=20, exclude=GAME_TERMS)
+    assert "mafia" not in lex.weights and "vote" not in lex.weights and "2" not in lex.weights
+    assert "why" in lex.weights

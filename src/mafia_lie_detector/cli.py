@@ -262,6 +262,34 @@ def cmd_score(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_village(args: argparse.Namespace) -> int:
+    from . import village
+    from .lexicon import Lexicon
+
+    lex = Lexicon.load(args.lexicon)
+    if args.events:
+        raw = json.loads(Path(args.events).read_text(encoding="utf-8"))
+        id2name, events = raw["agents"], raw["events"]
+    else:
+        id2name, events = village.fetch_events(args.slug, args.days)
+        if args.save:
+            Path(args.save).write_text(json.dumps({"agents": id2name, "events": events}), encoding="utf-8")
+    messages = village.chat_messages(events, id2name)
+    if not messages:
+        _err("no AGENT_TALK messages found")
+        return 1
+    scored = village.score_messages(messages, lex, id2name.values())
+    summary = village.summarise(scored, top_k=args.top)
+    out = Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
+    (out / "scored_messages.jsonl").write_text("\n".join(json.dumps(m, ensure_ascii=False) for m in scored) + "\n", encoding="utf-8")
+    village.write_markdown(summary, out / "summary.md", focus=args.agent)
+    for name, a in summary["agents"].items():
+        print(f"{name:<28} n={a['messages']:<5} mean={a['mean']:.3f} median={a['median']:.3f} >0.5: {a['share_above_0_5']:.0%}")
+    print(f"-> {out}/summary.md, scored_messages.jsonl")
+    return 0
+
+
 def _print_report(report: dict) -> None:
     def row(name: str, m: dict) -> str:
         return (
@@ -415,6 +443,17 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("lexicon", help="lexicon.json from analysis/word_analysis.py")
     s.add_argument("text", nargs="*", help="utterances (or pipe one per line on stdin)")
     s.set_defaults(func=cmd_score)
+
+    s = sub.add_parser("village", help="score AI Village agent chat with a lexicon (face-validity test, no ground truth)")
+    s.add_argument("lexicon", help="e.g. analysis/out/lexicon_general.json")
+    s.add_argument("--slug", default="actual-launch-1", help="village slug")
+    s.add_argument("--days", type=int, default=7)
+    s.add_argument("--agent", help="only list top messages for agents whose name contains this")
+    s.add_argument("--top", type=int, default=15)
+    s.add_argument("--events", help="offline: a JSON file saved with --save instead of fetching")
+    s.add_argument("--save", help="save the fetched agents+events JSON here for reuse")
+    s.add_argument("--out", default="data/village")
+    s.set_defaults(func=cmd_village)
 
     s = sub.add_parser("evaluate", help="cross-validate a baseline detector")
     s.add_argument("dataset")
