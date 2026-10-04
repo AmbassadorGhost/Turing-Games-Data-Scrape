@@ -82,6 +82,8 @@ The winner is stored in each row, not in the path. Discarded, with the reason pr
 `dataset/_report.json`: human seats, players whose exact model was not verified (`model` is
 `human` / `unknown`, or no `family`), drafts and incomplete games, and games where more than 40%
 of turns have the speaker `__unknown__` (turns you could not attribute; tune with `--max-unknown`).
+Custom or homemade AIs whose underlying model is unknown (set `family` to `custom`, e.g. Z2) are
+kept apart in `dataset/_unidentified/<name>/<lying|truth>/` until they can be identified.
 Each player's `evidence` field records how they were identified, for spot-checking. `dataset/` is
 git-ignored. Re-sorting into an existing directory needs `--clean` (it only deletes directories it wrote).
 

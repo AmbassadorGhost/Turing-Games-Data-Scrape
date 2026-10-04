@@ -118,6 +118,20 @@ def test_cli_sort(tmp_path, capsys):
     assert "not found" in capsys.readouterr().err
 
 
+def test_custom_ais_go_to_their_own_box(tmp_path):
+    game = make_game()
+    game.players.append(Player(player_id="z2", model="z2", family="custom", role="mafia", alignment=Alignment.DECEIVER))
+    game.players.append(Player(player_id="bot9", model=UNKNOWN_MODEL, family="Custom", role="villager",
+                               alignment=Alignment.TRUTHFUL))
+    game.turns.append(Turn(turn_id=100, speaker_id="z2", text="I am totally town.", phase="day"))
+    game.turns.append(Turn(turn_id=101, speaker_id="bot9", text="Beep, I trust Z2.", phase="day"))
+    report = sorting.sort_games([game], tmp_path)
+    assert (tmp_path / "_unidentified/z2/lying/g1__z2.jsonl").exists()
+    assert (tmp_path / "_unidentified/bot9/truth/g1__bot9.jsonl").exists()  # unknown model: named by player
+    assert report.written["_unidentified/z2/lying"] == 1
+    assert "g1/z2" not in report.discarded_players
+
+
 def test_unknown_speaker_is_a_valid_but_reserved_id():
     Game(game_id="g", turns=[Turn(turn_id=0, speaker_id=UNKNOWN_SPEAKER, text="?")])
     with pytest.raises(ValueError, match="reserved"):

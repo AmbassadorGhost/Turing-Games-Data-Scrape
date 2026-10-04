@@ -20,6 +20,9 @@ from .dataset import DEFAULT_EXCLUDED_PHASES
 from .schema import HUMAN, NARRATOR, UNKNOWN_MODEL, UNKNOWN_SPEAKER, Alignment, Game
 
 REPORT_NAME = "_report.json"
+# Custom / homemade AIs whose underlying model is not known (e.g. Z2) are kept, but in their own box.
+CUSTOM_FAMILY = "custom"
+UNIDENTIFIED_DIR = "_unidentified"
 
 
 def safe_segment(name: str) -> str:
@@ -48,9 +51,25 @@ class SortReport:
         }
 
 
+def _is_custom(player) -> bool:
+    return (player.family or "").strip().lower() == CUSTOM_FAMILY
+
+
+def _folder(out: Path, player, side: str) -> tuple[Path, str]:
+    """Verified models go to <family>/<model>/<side>; custom AIs to _unidentified/<name>/<side>."""
+    if _is_custom(player):
+        name = player.model if player.model.strip().lower() not in ("", UNKNOWN_MODEL) else player.player_id
+        rel = f"{UNIDENTIFIED_DIR}/{safe_segment(name)}/{side}"
+    else:
+        rel = f"{safe_segment(player.family)}/{safe_segment(player.model)}/{side}"
+    return out / rel, rel
+
+
 def _player_skip_reason(player) -> str | None:
     if player.model.strip().lower() == HUMAN:
         return "human player"
+    if _is_custom(player):
+        return None  # kept apart in _unidentified/ until the underlying model is known
     if player.model.strip().lower() in ("", UNKNOWN_MODEL):
         return "exact model not verified"
     if not (player.family or "").strip():
@@ -95,7 +114,7 @@ def sort_games(
                 report.discarded_players[f"{game.game_id}/{player.player_id}"] = "no usable turns"
                 continue
             side = "lying" if player.alignment is Alignment.DECEIVER else "truth"
-            folder = out / safe_segment(player.family) / safe_segment(player.model) / side
+            folder, rel = _folder(out, player, side)
             folder.mkdir(parents=True, exist_ok=True)
             path = folder / f"{safe_segment(game.game_id)}__{safe_segment(player.player_id)}.jsonl"
             with path.open("w", encoding="utf-8") as f:
@@ -109,7 +128,7 @@ def sort_games(
                         "claims": [c.model_dump(mode="json") for c in t.claims],
                     }, ensure_ascii=False) + "\n")
             report.files += 1
-            report.written[f"{safe_segment(player.family)}/{safe_segment(player.model)}/{side}"] += len(turns)
+            report.written[rel] += len(turns)
     out.mkdir(parents=True, exist_ok=True)
     (out / REPORT_NAME).write_text(json.dumps(report.to_json(), indent=2) + "\n", encoding="utf-8")
     return report
