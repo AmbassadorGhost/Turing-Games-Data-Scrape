@@ -242,6 +242,15 @@ def cmd_export(args: argparse.Namespace) -> int:
     return 0 if report.rows["public"] else 1
 
 
+def cmd_bins(args: argparse.Namespace) -> int:
+    from . import bins
+
+    manifest = bins.write_bins(bins.read_rows(args.turns), args.out)
+    top = {k: v for k, v in manifest["lines_per_file"].items() if k.startswith("all/")}
+    print(f"{top} -> {args.out} (full counts in manifest.json)")
+    return 0 if top else 1
+
+
 def _print_report(report: dict) -> None:
     def row(name: str, m: dict) -> str:
         return (
@@ -385,6 +394,11 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--test-fraction", type=float, default=0.2, help="share of games held out as test")
     s.add_argument("--include-drafts", action="store_true")
     s.set_defaults(func=cmd_export)
+
+    s = sub.add_parser("bins", help="plain-text deceiving/truthful bins: all, per family, per model")
+    s.add_argument("turns", nargs="?", default="data/clean/turns.jsonl", help="turns.jsonl from `mld export`")
+    s.add_argument("--out", default="data/bins")
+    s.set_defaults(func=cmd_bins)
 
     s = sub.add_parser("evaluate", help="cross-validate a baseline detector")
     s.add_argument("dataset")
