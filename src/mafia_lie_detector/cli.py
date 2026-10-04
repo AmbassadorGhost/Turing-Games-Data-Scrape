@@ -251,6 +251,17 @@ def cmd_bins(args: argparse.Namespace) -> int:
     return 0 if top else 1
 
 
+def cmd_score(args: argparse.Namespace) -> int:
+    from .lexicon import Lexicon, name_pattern
+
+    lex = Lexicon.load(args.lexicon)
+    scrub = name_pattern()
+    texts = args.text or [line.rstrip("\n") for line in sys.stdin if line.strip()]
+    for t in texts:
+        print(f"{lex.probability(t, scrub):.3f}\t{t}")
+    return 0
+
+
 def _print_report(report: dict) -> None:
     def row(name: str, m: dict) -> str:
         return (
@@ -399,6 +410,11 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("turns", nargs="?", default="data/clean/turns.jsonl", help="turns.jsonl from `mld export`")
     s.add_argument("--out", default="data/bins")
     s.set_defaults(func=cmd_bins)
+
+    s = sub.add_parser("score", help="score text with a lexicon: P(deceiving) per line")
+    s.add_argument("lexicon", help="lexicon.json from analysis/word_analysis.py")
+    s.add_argument("text", nargs="*", help="utterances (or pipe one per line on stdin)")
+    s.set_defaults(func=cmd_score)
 
     s = sub.add_parser("evaluate", help="cross-validate a baseline detector")
     s.add_argument("dataset")

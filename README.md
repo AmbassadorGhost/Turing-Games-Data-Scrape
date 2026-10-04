@@ -107,6 +107,18 @@ mld evaluate data/dataset/turns.jsonl --split leave_model_out      # unseen LLMs
 mld evaluate data/dataset/turns.jsonl --model style                # style-only ablation
 ```
 
+## Word analysis and the keyword detector
+
+```bash
+python analysis/word_analysis.py data/clean/turns.jsonl data/clean/games analysis/out
+mld score analysis/out/lexicon.json "Why would I lie? If you're honest, your vote makes sense."
+```
+
+`analysis/out/FINDINGS.md` is the write-up; `report.md` has every table; `word_stats.csv` every word.
+Method: Fightin'-Words log-odds, a within-game player-level permutation test, Mantel-Haenszel
+stratification by model / position / game type, LIWC-style categories, and a lexicon detector
+evaluated with the lexicon refit inside each fold (held-out games and held-out models).
+
 ## What the evaluation guards against
 
 - **Game leakage.** Turns from one game share names, events and phrasing, so a random turn split
