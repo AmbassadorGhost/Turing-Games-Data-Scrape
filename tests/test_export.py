@@ -61,7 +61,7 @@ def test_redacted_game_files_contain_no_human_text(tmp_path):
 
 
 def test_split_is_exact_stratified_and_stable():
-    groups = {f"r{i}": "llm_reconstruction" for i in range(18)} | {"c1": "captions", "c2": "captions"}
+    groups = {f"r{i}": "llm_transcription" for i in range(18)} | {"c1": "captions", "c2": "captions"}
     split = assign_splits(groups, 0.2)
     assert split == assign_splits(dict(reversed(list(groups.items()))), 0.2)  # order-independent
     test = {g for g, s in split.items() if s == "test"}

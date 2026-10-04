@@ -281,7 +281,7 @@ def main(turns_path, games_dir, out_dir):
     fwc = fightin_words(cac, cbc)
     agree = [(w, fmt(fw[w][1], 1), fmt(fwc[w][1], 1), cac[w] + cbc[w]) for w in top_ly[:15] + top_tr[:15] if cac[w] + cbc[w] >= 3]
     same = sum(1 for a in agree if np.sign(float(a[1])) == np.sign(float(a[2])))
-    R.append(f"\n### 5d. Caption-grade text only\n90% of the text is Gemini's reconstruction of the videos. In the "
+    R.append(f"\n### 5d. Caption-grade text only\nMost of the text is Gemini's transcription of the videos (checked against real captions: ~93% of its content words appear in the captions at the stated timestamps). In the "
              f"{len(cap)} caption-grade utterances ({sum(r['label']=='lying' for r in cap)} deceiving, from 2 games), "
              f"{same} of {len(agree)} top words keep the same direction:\n\n" +
              md_table(["word", "z all text", "z captions only", "n in captions"], [list(a) for a in agree]))

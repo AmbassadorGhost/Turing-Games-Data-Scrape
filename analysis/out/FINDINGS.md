@@ -36,8 +36,7 @@ certainty words, explicit accusation verbs. Liars do not hedge more or accuse mo
   the permutation test; they are the lexicon's backbone.
 - **Other controls changed nothing**: removing sheriffs/doctors, stratifying by early/mid/late game,
   and stratifying by game type all leave the top words pointing the same way.
-- **Caption-grade text** (the two re-done games, 107 utterances): 12 of 17 top words keep direction;
-  "why" is +2.2 even there. Too small to confirm, consistent enough not to alarm.
+- **Real captions** (7 games, 336 turns, section 4b): the same words at the same rates. Confirmed.
 
 ## 3. The detector
 
@@ -82,12 +81,29 @@ truth in a cooperative setting. Treat its output there as a stance score to read
 3. **Per-model detector**: not evaluable; most models have under 20 lying utterances. The per-model
    "tells" table in the report is provisional and should not be used.
 
+## 4b. Checked against real YouTube captions (the big caveat, resolved)
+
+You pulled the captions for 12 videos; 7 of them are annotated games (both 30-minute Mafia episodes,
+the Among Us episode, the Morpheus game, and the clones, jester and Z2 streams), 336 public turns.
+`analysis/align_captions.py` matched every annotated turn to the caption span at its timestamp:
+
+- **Gemini's text is a near-verbatim transcription**, not a reconstruction: 93% of its content words
+  appear in the captions at the stated time (precision 86%, matched span 1.08x its length). It
+  removed fillers and normalised names ("Deep Seek" -> "DeepSeek", "Grock" -> "Grok"); that is all.
+- **Every finding holds on the real captions.** Same 336 turns, Gemini text vs captions: refit lexicon
+  AUC 0.52 vs 0.53; a lexicon trained on the *other 13 games* scores them 0.565 vs 0.561 (general
+  version 0.585 vs 0.587); the {if, just, your, why} count 0.63 vs 0.61. Per-1,000-token rates of the
+  key words are the same on both sides (your: 5.4/1.8 vs 5.0/1.5 lying/truthful; was: 4.2/10.4 vs
+  4.2/9.8). The lower AUCs on this subset are sample size (7 games), not wording.
+
+So the provenance label is now `llm_transcription`, and the wording-level caveat below is withdrawn
+for the games we could check. The two streams in the batch that are not annotated ("13 AIs Play
+Mafia: Fire and Ice", an earlier One Night Werewolf stream) are new material for later.
+
 ## 5. Caveats that bound everything above
 
-- **90% of the text is Gemini's reconstruction of the videos**, not caption text. The signal could be
-  partly how Gemini writes liars. Against that: the words that emerged are generic function words,
-  they hold within each model, and they match the human deception literature. For that, real captions
-  via `mld extract` are the fix.
+- The text is Gemini's transcription of the videos; for 7 of 20 games it has now been checked against
+  the real captions and found faithful (section 4b). The other 13 are the same source and format.
 - Labels are by role. A mafia player's honest sentence counts as deceiving. The detector therefore
   learns "talks like someone on the lying side", which is what the use case needs, but it caps the
   achievable accuracy.

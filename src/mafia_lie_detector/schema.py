@@ -107,7 +107,7 @@ class Game(BaseModel):
     notes: str = ""
     events: list[str] = Field(default_factory=list)  # timeline, e.g. "N1: mafia kill X; doctor saves Y"
     # Where the dialogue text came from, e.g. "captions" (speech-to-text of the video) or
-    # "llm_reconstruction" (another model rewrote it). Wording-level features are only trustworthy
+    # "llm_transcription" (another model transcribed the video; checked near-verbatim). Wording features are trustworthy
     # for caption-grade text.
     text_provenance: str = "unknown"
 

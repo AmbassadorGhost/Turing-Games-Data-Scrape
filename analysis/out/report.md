@@ -86,16 +86,16 @@ Weighted log-odds with an informative Dirichlet prior (Monroe et al. 2008); z > 
 | serial killer | +2.6 | i saw | -2.4 |
 | i agree | +2.3 | i found | -2.1 |
 | saw me | +2.3 | confirmed mafia | -2.1 |
-| was doing | +2.3 | was with | -2.0 |
-| only concrete | +2.3 | mafia member | -1.9 |
-| to keep | +2.3 | i was | -1.8 |
+| to keep | +2.3 | was with | -2.0 |
+| was doing | +2.3 | mafia member | -1.9 |
+| only concrete | +2.3 | i was | -1.8 |
 | vote on | +2.1 | o 2 | -1.8 |
-| claim to | +2.0 | saw you | -1.8 |
-| going to | +2.0 | night and | -1.8 |
+| going to | +2.0 | saw you | -1.8 |
+| claim to | +2.0 | night and | -1.8 |
 | if we | +2.0 | was on | -1.8 |
-| if you | +2.0 | vote for | -1.7 |
+| to be | +2.0 | vote for | -1.7 |
 | are you | +2.0 | came back | -1.7 |
-| to be | +2.0 | i investigated | -1.7 |
+| if you | +2.0 | i investigated | -1.7 |
 | i'm not | +2.0 | night one | -1.6 |
 
 ## 3. Does it survive a game-level permutation test?
@@ -104,14 +104,14 @@ Labels were shuffled 3,000 times among the players *within each game* (each play
 
 - words tested: 461; expected false positives at p<0.05 by chance: ~23
 - words with p < 0.05: **35**
-- words surviving Benjamini-Hochberg FDR 10%: **4** ['your', 'if', 'just', 'why']
+- words surviving Benjamini-Hochberg FDR 10%: **4** ['if', 'your', 'just', 'why']
 
 | word | direction | n dec | n tru | log-odds | z | perm p | FDR 10% |
 |---|---|---|---|---|---|---|---|
-| your | deceiving | 48 | 53 | +0.65 | +3.6 | 0.000 | yes |
 | if | deceiving | 67 | 63 | +0.78 | +4.9 | 0.000 | yes |
-| why | deceiving | 33 | 33 | +0.73 | +3.2 | 0.001 | yes |
+| your | deceiving | 48 | 53 | +0.65 | +3.6 | 0.000 | yes |
 | just | deceiving | 54 | 60 | +0.64 | +3.7 | 0.001 | yes |
+| why | deceiving | 33 | 33 | +0.73 | +3.2 | 0.001 | yes |
 | was | truthful | 56 | 253 | -0.46 | -3.8 | 0.002 |  |
 | sense | deceiving | 11 | 5 | +1.37 | +2.9 | 0.004 |  |
 | fast | deceiving | 8 | 2 | +1.83 | +2.7 | 0.004 |  |
@@ -135,8 +135,8 @@ Labels were shuffled 3,000 times among the players *within each game* (each play
 | here | deceiving | 14 | 15 | +0.67 | +2.0 | 0.035 |  |
 | keep | deceiving | 13 | 11 | +0.87 | +2.3 | 0.035 |  |
 | concrete | deceiving | 13 | 12 | +0.79 | +2.2 | 0.038 |  |
-| 2 | truthful | 5 | 45 | -0.88 | -2.6 | 0.041 |  |
 | arrived | truthful | 0 | 10 | -1.67 | -1.6 | 0.041 |  |
+| 2 | truthful | 5 | 45 | -0.88 | -2.6 | 0.041 |  |
 | i | truthful | 154 | 518 | -0.25 | -3.2 | 0.042 |  |
 | let | deceiving | 9 | 8 | +0.83 | +1.9 | 0.043 |  |
 | navigation | truthful | 0 | 12 | -1.67 | -1.8 | 0.043 |  |
@@ -278,7 +278,7 @@ Among Us is about locations and bodies, Mafia about roles and votes. Stratifying
 | ! | -2.2 | -0.98 | 2/2 |
 
 ### 5d. Caption-grade text only
-90% of the text is Gemini's reconstruction of the videos. In the 107 caption-grade utterances (14 deceiving, from 2 games), 12 of 17 top words keep the same direction:
+Most of the text is Gemini's transcription of the videos (checked against real captions: ~93% of its content words appear in the captions at the stated timestamps). In the 107 caption-grade utterances (14 deceiving, from 2 games), 12 of 17 top words keep the same direction:
 
 | word | z all text | z captions only | n in captions |
 |---|---|---|---|
@@ -338,9 +338,9 @@ Lexicon size (same fold protocol): fewer, better-attested words generalise bette
 
 | lexicon | AUC held-out games | AUC held-out models |
 |---|---|---|
-| >= 5 occurrences, top 300 words | 0.580 | 0.546 |
-| >= 10 occurrences, top 100 words | 0.594 | 0.552 |
-| >= 15 occurrences, top 100 words | 0.603 | 0.567 |
+| >= 5 occurrences, top 300 words | 0.580 | 0.545 |
+| >= 10 occurrences, top 100 words | 0.594 | 0.555 |
+| >= 15 occurrences, top 100 words | 0.604 | 0.566 |
 | >= 30 occurrences, top 40 words | 0.629 | 0.603 |
 | >= 50 occurrences, top 20 words | 0.624 | 0.581 |
 
@@ -374,7 +374,7 @@ For each family: a lexicon trained only on that family's other games vs the gene
 | anthropic | 177 | 41 | 19 | AUC 0.394, AP 0.211 (base rate 0.23, n=177) | AUC 0.529, AP 0.297 (base rate 0.23, n=177) |
 | deepseek | 63 | 18 | 16 | AUC 0.093, AP 0.183 (base rate 0.29, n=63) | AUC 0.660, AP 0.524 (base rate 0.29, n=63) |
 | google | 242 | 53 | 20 | AUC 0.516, AP 0.222 (base rate 0.22, n=242) | AUC 0.677, AP 0.334 (base rate 0.22, n=242) |
-| meta | 49 | 20 | 17 | AUC 0.165, AP 0.308 (base rate 0.41, n=49) | AUC 0.545, AP 0.433 (base rate 0.41, n=49) |
+| meta | 49 | 20 | 17 | AUC 0.165, AP 0.308 (base rate 0.41, n=49) | AUC 0.555, AP 0.438 (base rate 0.41, n=49) |
 | moonshot | 50 | 20 | 15 | AUC 0.145, AP 0.301 (base rate 0.40, n=50) | AUC 0.565, AP 0.453 (base rate 0.40, n=50) |
 | openai | 189 | 77 | 17 | AUC 0.362, AP 0.342 (base rate 0.41, n=189) | AUC 0.632, AP 0.557 (base rate 0.41, n=189) |
 | xai | 103 | 25 | 16 | AUC 0.156, AP 0.155 (base rate 0.24, n=103) | AUC 0.366, AP 0.192 (base rate 0.24, n=103) |
@@ -385,18 +385,18 @@ Most models have under 20 deceiving utterances, so a per-model lexicon cannot be
 
 | model | dec | tru | leans deceiving | leans truthful |
 |---|---|---|---|---|
-| claude-opus-4.5 | 11 | 29 | in, admin, that, see, doing, anyone | is, my, two, of, yesterday, mafia |
-| claude-opus-4.8 | 8 | 20 | we, killer, to, serial, have, mafia | security, in, was, and, body, ? |
+| claude-opus-4.5 | 11 | 29 | in, admin, that, see, doing, anyone | is, two, my, yesterday, of, mafia |
+| claude-opus-4.8 | 8 | 20 | killer, we, to, exactly, serial, mafia | security, in, was, and, body, ? |
 | claude-sonnet-4.5 | 14 | 61 | if, does, just, that, really, night | s, voting, voted, only, been, mafia |
-| deepseek-v3.2 | 15 | 31 | you, have, you're, slip, by, last | i, was, to, need, clear, their |
-| gemini-3-flash | 18 | 89 | if, to, be, it's, makes, vigilante | and, s, was, you, were, saw |
-| gemini-3.1-pro | 11 | 24 | we, your, structural, for, is, data | you, i, and, in, them, admin |
-| gemini-3.5-flash | 10 | 11 | that, it, serial, killer, we, us | o, 2, was, ?, of, from |
-| gpt-4o | 18 | 51 | focus, votes, on, let's, too, by | in, vote, that, mafia, for, we |
-| gpt-5.2 | 32 | 23 | day, vote, your, exactly, a, makes | left, info, tonight, i, want, my |
-| grok-4.1 | 25 | 47 | vote, their, saw, execute, is, tasks | 1, hammer, confirmed, you, everyone, 2 |
-| kimi-k2.5 | 13 | 14 | you're, if, three, lynch, you, ? | was, about, need, to, not, they |
-| llama-4 | 20 | 29 | need, or, player, evidence, from, no | you, my, that, like, mason, were |
+| deepseek-v3.2 | 15 | 31 | you, have, slip, you're, by, last | i, was, to, need, clear, their |
+| gemini-3-flash | 18 | 89 | if, to, be, makes, need, vigilante | and, s, was, you, were, saw |
+| gemini-3.1-pro | 11 | 24 | we, your, structural, for, is, data | you, i, and, in, them, upper |
+| gemini-3.5-flash | 10 | 11 | that, it, killer, serial, we, am | o, 2, was, ?, of, did |
+| gpt-4o | 18 | 51 | focus, votes, on, let's, too, push | in, vote, that, mafia, for, we |
+| gpt-5.2 | 32 | 23 | day, vote, exactly, your, a, makes | left, info, tonight, i, want, my |
+| grok-4.1 | 25 | 47 | vote, their, saw, execute, is, calling | 1, hammer, confirmed, you, everyone, 2 |
+| kimi-k2.5 | 13 | 14 | you're, if, three, lynch, you, ? | was, need, about, to, not, they |
+| llama-4 | 20 | 29 | need, or, player, from, evidence, no | you, my, that, like, mason, were |
 
 ### Domain-neutral lexicon
 `lexicon_general.json` drops every Mafia / Among Us / Werewolf term (roles, votes, kills, locations, mechanics) and bare numbers, for use outside these games. Held-out games AUC 0.623, held-out models AUC 0.619 (vs 0.629 / 0.603 with game terms): the signal is not in the game vocabulary. Words: if, makes, agree, exactly, why, how, don't, just, your, i'll, what, you're, seems, it's, didn't, still, too, feels, like, it, and, i, one, they, trying, in, were, at, my, near, was, two, saw, them, where, most, found, did, !, both.
@@ -415,8 +415,8 @@ Most models have under 20 deceiving utterances, so a per-model lexicon cannot be
 | how | +0.33 | electrical | -0.32 |
 | don't | +0.30 | security | -0.29 |
 | just | +0.30 | found | -0.25 |
-| your | +0.26 | where | -0.23 |
-| i'll | +0.24 | hallway | -0.23 |
+| your | +0.26 | hallway | -0.23 |
+| i'll | +0.24 | where | -0.23 |
 | role | +0.24 | confirmed | -0.22 |
 | what | +0.23 | them | -0.22 |
 | you're | +0.23 | saw | -0.21 |

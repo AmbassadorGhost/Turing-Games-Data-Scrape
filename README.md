@@ -96,7 +96,7 @@ mld export --out data/clean   # turns.jsonl (public AI speech), private.jsonl, r
 Removes every human line (including from the game files; human addressees become `human`), drops
 unverified models, teasers/post-game, lines under 3 words and duplicates, strips stream cues, and
 adds a deterministic train/test split by game, stratified by `text_provenance` (`captions` vs
-`llm_reconstruction`). Only caption-grade text is trustworthy for wording-level features.
+`llm_transcription`). Only caption-grade text is trustworthy for wording-level features.
 
 ### 3. Build a dataset and evaluate
 
