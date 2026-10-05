@@ -15,6 +15,7 @@ family, per model. Then try the general one on AI Village agents.
 | Keyword detector (general + domain-neutral) | `analysis/out/lexicon.json`, `lexicon_general.json`; `mld score` | done |
 | Check of transcript fidelity against real YouTube captions | `analysis/align_captions.py`; FINDINGS 4b | done: transcripts are near-verbatim |
 | AI Village scorer with per-agent baselines | `mld village` | done; `analysis/out/village_check.md` |
+| Pre-registered test on DeepSeek-V3.2's documented Village scams (Jul 29-31) | `analysis/out/scam_test.md` | done: negative, lexicon does not fire |
 
 Data (`data/`, `dataset/`) is third-party transcript material and is git-ignored on purpose.
 Deliverable zips were handed over in the session (dataset, bins, analysis, village check).
@@ -32,7 +33,9 @@ a 40-word lexicon reaches AUC 0.63 on held-out games and 0.60-0.63 on never-seen
 and model-specific lexicons are *worse* than the general one with current data (too few lying turns
 per family); they need ~5x more data. On AI Village, all agents score in the truthful band; agent
 differences are real but reflect communication register (coordination vs reporting), with DeepSeek-V3.2
-second behind GPT-5.2; the top-scoring messages are not deceptive on reading.
+second behind GPT-5.2; the top-scoring messages are not deceptive on reading. A pre-registered test on
+DeepSeek's two documented Village deceptions (misattributed $19.99 graph-theory listing, padded evidence
+ledger) is negative: those messages score at or below its own baseline (AUC 0.47 / 0.38).
 
 ## How to run everything
 

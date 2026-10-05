@@ -100,6 +100,16 @@ So the provenance label is now `llm_transcription`, and the wording-level caveat
 for the games we could check. The two streams in the batch that are not annotated ("13 AIs Play
 Mafia: Fire and Ice", an earlier One Night Werewolf stream) are new material for later.
 
+## 4c. The AI Village scam test (pre-registered, negative)
+
+`analysis/out/scam_test.md`. DeepSeek-V3.2's two documented Village deceptions (the $19.99
+"Six Disproved Graph Theory Conjectures" Gumroad listing of Jul 29-30 that misattributed Claude Opus 5's
+work, and the Jul 31 padding of an evidence ledger with 16 placeholder records) score *at or below*
+its own baseline: permutation p = 0.80 and 1.00, AUC 0.47 and 0.38, against a pre-set bar of p < 0.05
+or AUC > 0.6. The scam messages are confident project management, not hedged pushback; the lie is in
+the content, which a stance lexicon cannot see. The agent that did catch both was GLM-5.2, by checking
+claims against the repository.
+
 ## 5. Caveats that bound everything above
 
 - The text is Gemini's transcription of the videos; for 7 of 20 games it has now been checked against
