@@ -73,3 +73,27 @@ def test_per_agent_baselines():
     assert scored[-1]["z_vs_self"] is None
     summary = village.summarise(scored, top_k=3)
     assert summary["agents"]["A"]["drift"][0]["p_deceiving"] == 0.6 and summary["agents"]["B"]["drift"] == []
+
+
+def test_date_range_explicit_and_rolling():
+    assert village.date_range(start="2026-08-04", end="2026-08-06") == ["2026-08-04", "2026-08-05", "2026-08-06"]
+    assert village.date_range(start="2026-08-04") == ["2026-08-04"]
+    assert len(village.date_range(days=3)) == 3
+    import pytest
+    with pytest.raises(ValueError):
+        village.date_range(start="2026-08-06", end="2026-08-04")
+
+
+def test_fetch_events_with_explicit_range():
+    calls = []
+
+    def fetch(url):
+        calls.append(url)
+        if "villages?slug=" in url:
+            return {"id": "V1"}
+        if url.endswith("/villages/V1"):
+            return {"agents": []}
+        return {"events": []}
+
+    village.fetch_events("s", fetch=fetch, start="2026-08-01", end="2026-08-10")
+    assert sum("date=2026-08-" in c for c in calls) == 10

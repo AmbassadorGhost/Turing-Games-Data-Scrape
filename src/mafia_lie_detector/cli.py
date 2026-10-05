@@ -271,7 +271,7 @@ def cmd_village(args: argparse.Namespace) -> int:
         raw = json.loads(Path(args.events).read_text(encoding="utf-8"))
         id2name, events = raw["agents"], raw["events"]
     else:
-        id2name, events = village.fetch_events(args.slug, args.days)
+        id2name, events = village.fetch_events(args.slug, args.days, start=args.start, end=args.end)
         if args.save:
             Path(args.save).write_text(json.dumps({"agents": id2name, "events": events}), encoding="utf-8")
     messages = village.chat_messages(events, id2name)
@@ -447,7 +447,9 @@ def build_parser() -> argparse.ArgumentParser:
     s = sub.add_parser("village", help="score AI Village agent chat with a lexicon (face-validity test, no ground truth)")
     s.add_argument("lexicon", help="e.g. analysis/out/lexicon_general.json")
     s.add_argument("--slug", default="actual-launch-1", help="village slug")
-    s.add_argument("--days", type=int, default=7)
+    s.add_argument("--days", type=int, default=7, help="last N days (ignored when --start is given)")
+    s.add_argument("--start", help="first date YYYY-MM-DD (UTC) of an explicit range")
+    s.add_argument("--end", help="last date of the range (default: same as --start)")
     s.add_argument("--agent", help="only list top messages for agents whose name contains this")
     s.add_argument("--top", type=int, default=15)
     s.add_argument("--events", help="offline: a JSON file saved with --save instead of fetching")

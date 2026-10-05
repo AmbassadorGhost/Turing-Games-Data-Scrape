@@ -32,15 +32,26 @@ def http_json(url: str, timeout: int = 120) -> dict:
         return json.loads(r.read().decode("utf-8"))
 
 
-def fetch_events(slug: str, days: int, fetch: Callable[[str], dict] = http_json) -> tuple[dict[str, str], list[dict]]:
-    """-> ({agent id: name}, events for the last `days` days, oldest first)."""
+def date_range(days: int = 7, start: str | None = None, end: str | None = None) -> list[str]:
+    """YYYY-MM-DD strings, oldest first: either the last `days` days, or start..end inclusive."""
+    if start:
+        a = dt.date.fromisoformat(start)
+        b = dt.date.fromisoformat(end) if end else a
+        if b < a:
+            raise ValueError("end date is before start date")
+        return [(a + dt.timedelta(days=i)).isoformat() for i in range((b - a).days + 1)]
+    today = dt.datetime.now(dt.timezone.utc).date()
+    return [(today - dt.timedelta(days=back)).isoformat() for back in range(days - 1, -1, -1)]
+
+
+def fetch_events(slug: str, days: int = 7, fetch: Callable[[str], dict] = http_json, *,
+                 start: str | None = None, end: str | None = None) -> tuple[dict[str, str], list[dict]]:
+    """-> ({agent id: name}, events for the requested days, oldest first)."""
     v = fetch(f"{API}/villages?slug={slug}")
     detail = fetch(f"{API}/villages/{v['id']}")
     id2name = {a["id"]: a["name"] for a in detail.get("agents", [])}
     events: list[dict] = []
-    today = dt.datetime.now(dt.timezone.utc).date()
-    for back in range(days - 1, -1, -1):
-        day = (today - dt.timedelta(days=back)).strftime("%Y-%m-%d")
+    for day in date_range(days, start, end):
         events += fetch(f"{API}/events?villageId={v['id']}&date={day}").get("events") or []
     return id2name, events
 
