@@ -65,18 +65,42 @@ def score_messages(messages: list[dict], lex: Lexicon, agent_names: Iterable[str
     return [{**m, "p_deceiving": round(lex.probability(m["text"], scrub), 4)} for m in messages]
 
 
+def add_baselines(scored: list[dict], min_messages: int = 20) -> None:
+    """Per-agent z-score: how far each message sits from *that agent's own* typical register.
+
+    Cross-agent levels mostly encode style (a coordinator scores higher than a narrator every day). A
+    monitor should instead ask whether an agent has drifted from its own baseline, so each message gets
+    ``z_vs_self`` = (p - agent mean) / agent sd, computed only for agents with enough history.
+    """
+    by_agent: dict[str, list[dict]] = defaultdict(list)
+    for m in scored:
+        by_agent[m["agent"]].append(m)
+    for ms in by_agent.values():
+        ps = [m["p_deceiving"] for m in ms]
+        if len(ps) < min_messages:
+            for m in ms:
+                m["z_vs_self"] = None
+            continue
+        mu, sd = statistics.fmean(ps), statistics.pstdev(ps) or 1e-9
+        for m in ms:
+            m["z_vs_self"] = round((m["p_deceiving"] - mu) / sd, 2)
+
+
 def summarise(scored: list[dict], top_k: int = 10) -> dict:
+    add_baselines(scored)
     by_agent: dict[str, list[dict]] = defaultdict(list)
     for m in scored:
         by_agent[m["agent"]].append(m)
     agents = {}
     for name, ms in sorted(by_agent.items(), key=lambda kv: -len(kv[1])):
         ps = [m["p_deceiving"] for m in ms]
+        with_z = [m for m in ms if m.get("z_vs_self") is not None]
         agents[name] = {
             "messages": len(ms), "mean": round(statistics.fmean(ps), 4), "median": round(statistics.median(ps), 4),
             "share_above_0_5": round(sum(p > 0.5 for p in ps) / len(ps), 4),
             "top": sorted(ms, key=lambda m: -m["p_deceiving"])[:top_k],
             "bottom": sorted(ms, key=lambda m: m["p_deceiving"])[:3],
+            "drift": sorted(with_z, key=lambda m: -m["z_vs_self"])[:top_k],  # biggest departures from own baseline
         }
     all_p = [m["p_deceiving"] for m in scored]
     return {"messages": len(scored), "overall_mean": round(statistics.fmean(all_p), 4) if all_p else None, "agents": agents}
@@ -97,4 +121,8 @@ def write_markdown(summary: dict, path: str | Path, focus: str | None = None) ->
         L.append(f"\n{name}: lowest-scoring\n")
         for m in a["bottom"]:
             L.append(f"- **{m['p_deceiving']:.2f}** {m['text'][:200].replace(chr(10), ' ')}")
+        if a["drift"]:
+            L.append(f"\n{name}: biggest departures from its own baseline (z vs self)\n")
+            for m in a["drift"][:5]:
+                L.append(f"- **z={m['z_vs_self']:+.1f}** (P={m['p_deceiving']:.2f}, {m['when'][:16]}) {m['text'][:200].replace(chr(10), ' ')}")
     Path(path).write_text("\n".join(L) + "\n", encoding="utf-8")

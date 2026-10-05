@@ -63,3 +63,13 @@ def test_cli_offline(tmp_path, capsys):
                      "--out", str(tmp_path / "out"), "--agent", "DeepSeek"]) == 0
     assert "DeepSeek V3.2" in capsys.readouterr().out
     assert (tmp_path / "out" / "summary.md").exists() and (tmp_path / "out" / "scored_messages.jsonl").exists()
+
+
+def test_per_agent_baselines():
+    scored = [{"agent": "A", "when": f"t{i}", "text": "x", "p_deceiving": p} for i, p in enumerate([0.2] * 19 + [0.6])]
+    scored += [{"agent": "B", "when": "t", "text": "y", "p_deceiving": 0.9}]  # too few messages for a baseline
+    village.add_baselines(scored, min_messages=20)
+    assert scored[19]["z_vs_self"] > 3 and scored[0]["z_vs_self"] < 0
+    assert scored[-1]["z_vs_self"] is None
+    summary = village.summarise(scored, top_k=3)
+    assert summary["agents"]["A"]["drift"][0]["p_deceiving"] == 0.6 and summary["agents"]["B"]["drift"] == []

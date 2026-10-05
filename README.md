@@ -1,5 +1,7 @@
 # Mafia lie detector
 
+**Start with [PROJECT_SUMMARY.md](PROJECT_SUMMARY.md)**: what exists, results, how to run, limits.
+
 Tools for building a role-labelled transcript dataset from Mafia / Werewolf-style games played by
 LLMs, and for training and honestly evaluating detectors that spot when a particular LLM is
 lying. Inspired by the [Turing Games](https://www.youtube.com/@turing_games/videos) videos and
@@ -116,7 +118,9 @@ mld score analysis/out/lexicon.json "Why would I lie? If you're honest, your vot
 
 `lexicon_general.json` is the domain-neutral version (no Mafia / Among Us / Werewolf terms); use it
 outside the games. `mld village lexicon_general.json --days 7 --agent DeepSeek` scores AI Village chat
-with it (a face-validity test: the Village is cooperative, so there is no ground truth there).
+with it (a face-validity test: the Village is cooperative, so there is no ground truth there). Each
+message also gets `z_vs_self`, its distance from that agent's own baseline; `summary.md` lists each
+agent's biggest departures, which is the signal to watch rather than cross-agent levels.
 
 `analysis/out/FINDINGS.md` is the write-up; `report.md` has every table; `word_stats.csv` every word.
 Method: Fightin'-Words log-odds, a within-game player-level permutation test, Mantel-Haenszel
